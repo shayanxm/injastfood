@@ -1,10 +1,11 @@
 package com.example.shayanmoradi.injastfood.view.menu;
 
-import android.support.v4.app.Fragment;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 import com.example.shayanmoradi.injastfood.R;
+
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 
 public class MenuActivity extends AppCompatActivity {
 

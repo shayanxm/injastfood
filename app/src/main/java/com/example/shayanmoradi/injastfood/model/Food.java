@@ -20,4 +20,36 @@ public class Food {
         this.mfoodCategoryName = mfoodCategoryName;
         this.mfoodImageAddress = mfoodImageAddress;
     }
+
+    public int getMfoodId() {
+        return mfoodId;
+    }
+
+    public String getMfoodName() {
+        return mfoodName;
+    }
+
+    public int getMfoodPrice() {
+        return mfoodPrice;
+    }
+
+    public double getMfoodOff() {
+        return mfoodOff;
+    }
+
+    public int getMfoodRate() {
+        return mfoodRate;
+    }
+
+    public String getMfoodRestaurantName() {
+        return mfoodRestaurantName;
+    }
+
+    public String getMfoodCategoryName() {
+        return mfoodCategoryName;
+    }
+
+    public String getMfoodImageAddress() {
+        return mfoodImageAddress;
+    }
 }
