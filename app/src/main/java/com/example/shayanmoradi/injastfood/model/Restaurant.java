@@ -10,6 +10,7 @@ public class Restaurant {
     private int mRestaurantId;
     private String mRestaurantName;
     private int mRestaurantRate;
+    private double mRestaurantOff;
     private String mRestaurantDes;
     private String mRestaurantAddress;
     private List<Category>mRestaurantCategoreis;
@@ -18,10 +19,11 @@ public class Restaurant {
     private String mRestaurantImageAddress;
     private Partiation mRestKind;
 
-    public Restaurant(int mRestaurantId, String mRestaurantName, int mRestaurantRate, String mRestaurantDes, String mRestaurantAddress, List<Category> mRestaurantCategoreis, List<Food> mRestaurantAllFoods, double mRestaurantDeliveryPrice, String mRestaurantImageAddress, Partiation mRestKind) {
+    public Restaurant(int mRestaurantId, String mRestaurantName, int mRestaurantRate, double mRestaurantOff, String mRestaurantDes, String mRestaurantAddress, List<Category> mRestaurantCategoreis, List<Food> mRestaurantAllFoods, double mRestaurantDeliveryPrice, String mRestaurantImageAddress, Partiation mRestKind) {
         this.mRestaurantId = mRestaurantId;
         this.mRestaurantName = mRestaurantName;
         this.mRestaurantRate = mRestaurantRate;
+        this.mRestaurantOff = mRestaurantOff;
         this.mRestaurantDes = mRestaurantDes;
         this.mRestaurantAddress = mRestaurantAddress;
         this.mRestaurantCategoreis = mRestaurantCategoreis;
@@ -72,5 +74,9 @@ public class Restaurant {
 
     public Partiation getmRestKind() {
         return mRestKind;
+    }
+
+    public double getmRestaurantOff() {
+        return mRestaurantOff;
     }
 }

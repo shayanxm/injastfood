@@ -2,6 +2,7 @@ package com.example.shayanmoradi.injastfood.view.list;
 
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -13,6 +14,7 @@ import android.widget.TextView;
 import com.example.shayanmoradi.injastfood.R;
 import com.example.shayanmoradi.injastfood.model.Restaurant;
 import com.example.shayanmoradi.injastfood.model.StaticDataGenerator;
+import com.example.shayanmoradi.injastfood.view.restpage.RestPageActivity;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -192,7 +194,9 @@ public class ShowListOfRestFragment extends Fragment {
                     //    mTask.setYesForEditNoForCreate(false);
                     itemView.getContext();
 
+                    Intent intent = RestPageActivity.newIntent(getActivity(), mRestaurant.getmRestaurantId());
 
+                    startActivity(intent);
 //                    FragmentManager fragmentManager = getFragmentManager();
 //                    TaskDetailFragment detailFragment = TaskDetailFragment.newInstance(mTask.getmTaskId());
 //                    detailFragment.show(fragmentManager, "dialog");

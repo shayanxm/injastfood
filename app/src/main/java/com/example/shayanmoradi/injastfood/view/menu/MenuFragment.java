@@ -8,18 +8,20 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.shayanmoradi.injastfood.R;
-import com.example.shayanmoradi.injastfood.model.Food;
 import com.example.shayanmoradi.injastfood.model.Restaurant;
 import com.example.shayanmoradi.injastfood.model.StaticDataGenerator;
 import com.example.shayanmoradi.injastfood.view.list.ShowListOfRestActivity;
+import com.example.shayanmoradi.injastfood.view.restpage.RestPageActivity;
 
 import java.util.List;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 /**
@@ -32,9 +34,13 @@ public class MenuFragment extends Fragment {
     private TextView goToCandyBtn;
     private TextView goToCaffeBtn;
     private TextView goTOOthersBtn;
-    List<Restaurant>allRestList;
+    List<Restaurant> allRestList;
+    List<Restaurant> restOrderAsRate;
+    List<Restaurant> restOrderASOffer;
     Restaurant testRest;
-    RecyclerView restKindsRv;
+    RecyclerView topRestRv;
+    RecyclerView offerRestRv;
+
     public static MenuFragment newInstance() {
 
         Bundle args = new Bundle();
@@ -53,35 +59,42 @@ public class MenuFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view =  inflater.inflate(R.layout.fragment_menu, container, false);
-        goToAllBtn= view.findViewById(R.id.go_to_all_rest_btn);
+        View view = inflater.inflate(R.layout.fragment_menu, container, false);
+        goToAllBtn = view.findViewById(R.id.go_to_all_rest_btn);
 
- goToREstBtn=view.findViewById(R.id.go_to_rest_tv);
- goToCandyBtn=view.findViewById(R.id.go_to_candy_tv);
- goToCaffeBtn=view.findViewById(R.id.go_to_caffe_tv);
-  goTOOthersBtn=view.findViewById(R.id.go_to_others_tv);
+        goToREstBtn = view.findViewById(R.id.go_to_rest_tv);
+        goToCandyBtn = view.findViewById(R.id.go_to_candy_tv);
+        goToCaffeBtn = view.findViewById(R.id.go_to_caffe_tv);
+        goTOOthersBtn = view.findViewById(R.id.go_to_others_tv);
+        topRestRv = view.findViewById(R.id.top_foods_rv);
+        offerRestRv = view.findViewById(R.id.offer_foods_rv);
+        restOrderAsRate = StaticDataGenerator.getInstance(getActivity()).getSortedRestListAsRate();
+        restOrderASOffer = StaticDataGenerator.getInstance(getActivity()).getSortedRestListAsOffer();
+
+        topRestRv.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayout.HORIZONTAL, false));
+        TaskAdapter tasksAdapter = new TaskAdapter(restOrderAsRate);
+
+        topRestRv.setAdapter(tasksAdapter);
+
+        offerRestRv.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayout.HORIZONTAL, false));
+        TaskAdapter offersAdapter = new TaskAdapter(restOrderASOffer);
+        offerRestRv.setAdapter(offersAdapter);
 
 
-      allRestList=  StaticDataGenerator.getInstance(getActivity()).getmAllRestList();
-      testRest=allRestList.get(0);
-      List<Food> foodList=testRest.getmRestaurantAllFoods();
-        goToAllBtn.setText(foodList.get(0).getMfoodName()+"xx"+foodList.get(1).getMfoodName());
+        goToAllBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = ShowListOfRestActivity.newIntent(getActivity());
 
+//      Intent intent= new Intent(getActivity(),RestPageActivity.class);
+                startActivity(intent);
 
-
-goToAllBtn.setOnClickListener(new View.OnClickListener() {
-    @Override
-    public void onClick(View v) {
-       Intent intent=ShowListOfRestActivity.newIntent(getActivity());
-    //   Intent intent= ShowListOfRestActivity.newIntent(getActivity());
-        startActivity(intent);
-
-    }
-});
+            }
+        });
         goToREstBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=ShowListOfRestActivity.newIntent(getActivity(),Restaurant.Partiation.REsturant);
+                Intent intent = ShowListOfRestActivity.newIntent(getActivity(), Restaurant.Partiation.REsturant);
                 //   Intent intent= ShowListOfRestActivity.newIntent(getActivity());
                 startActivity(intent);
 
@@ -90,7 +103,7 @@ goToAllBtn.setOnClickListener(new View.OnClickListener() {
         goToCandyBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=ShowListOfRestActivity.newIntent(getActivity(),Restaurant.Partiation.Candy);
+                Intent intent = ShowListOfRestActivity.newIntent(getActivity(), Restaurant.Partiation.Candy);
                 //   Intent intent= ShowListOfRestActivity.newIntent(getActivity());
                 startActivity(intent);
 
@@ -99,7 +112,7 @@ goToAllBtn.setOnClickListener(new View.OnClickListener() {
         goToCaffeBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=ShowListOfRestActivity.newIntent(getActivity(),Restaurant.Partiation.Caffe);
+                Intent intent = ShowListOfRestActivity.newIntent(getActivity(), Restaurant.Partiation.Caffe);
                 //   Intent intent= ShowListOfRestActivity.newIntent(getActivity());
                 startActivity(intent);
 
@@ -108,7 +121,7 @@ goToAllBtn.setOnClickListener(new View.OnClickListener() {
         goTOOthersBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=ShowListOfRestActivity.newIntent(getActivity(),Restaurant.Partiation.Others);
+                Intent intent = ShowListOfRestActivity.newIntent(getActivity(), Restaurant.Partiation.Others);
                 //   Intent intent= ShowListOfRestActivity.newIntent(getActivity());
                 startActivity(intent);
 
@@ -116,32 +129,40 @@ goToAllBtn.setOnClickListener(new View.OnClickListener() {
         });
 
 
+        return view;
 
-   return view;
+    }
 
-    } class TaskHolder extends RecyclerView.ViewHolder {
-
-        private TextView KindNameTv;
-        private ImageView kindImgIv;
-
+    class TaskHolder extends RecyclerView.ViewHolder {
+        private TextView restNameTv;
+        private TextView restDesTv;
+        private TextView restAddTv;
+        private TextView restDelMoneyTv;
+        private ImageView restImg;
         private Restaurant mRestaurant;
-        Context context;
 
         public TaskHolder(@NonNull final View itemView) {
             super(itemView);
 
-           //
-            // KindNameTv = itemView.findViewById(R.id.kind_name_tv);
-            kindImgIv = itemView.findViewById(R.id.kind_image_image_view);
 
+            //
+            // KindNameTv = itemView.findViewById(R.id.kind_name_tv);
+            restNameTv = itemView.findViewById(R.id.items_name_top);
+            restDesTv = itemView.findViewById(R.id.items_des_top);
+            restAddTv = itemView.findViewById(R.id.items_add_top);
+            restDelMoneyTv = itemView.findViewById(R.id.items_del_price_top);
+            restImg = itemView.findViewById(R.id.items_image_top);
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
 
 
-                //    mTask.setYesForEditNoForCreate(false);
+                    //    mTask.setYesForEditNoForCreate(false);
                     itemView.getContext();
 
+                    Intent intent = RestPageActivity.newIntent(getActivity(), mRestaurant.getmRestaurantId());
+
+                    startActivity(intent);
 
 //                    FragmentManager fragmentManager = getFragmentManager();
 //                    TaskDetailFragment detailFragment = TaskDetailFragment.newInstance(mTask.getmTaskId());
@@ -154,11 +175,14 @@ goToAllBtn.setOnClickListener(new View.OnClickListener() {
         public void bind(Restaurant restaurant) {
             mRestaurant = restaurant;
 
-  ////
-      //      set view up here
+            ////
+            //      set view up here
             ////
 
-
+            restNameTv.setText(restaurant.getmRestaurantName());
+            restDesTv.setText(restaurant.getmRestaurantDes());
+            restAddTv.setText(restaurant.getmRestaurantAddress());
+            restDelMoneyTv.setText(restaurant.getmRestaurantDeliveryPrice() + "");
 
 
         }
@@ -184,7 +208,7 @@ goToAllBtn.setOnClickListener(new View.OnClickListener() {
         @Override
         public TaskHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
             LayoutInflater inflater = LayoutInflater.from(parent.getContext());
-            View view = inflater.inflate(R.layout.items_rest_sort_rv, parent, false);
+            View view = inflater.inflate(R.layout.itemes_in_top_foods_rv, parent, false);
             TaskHolder crimeHolder = new TaskHolder(view);
             context = view.getContext();
             return crimeHolder;
@@ -202,7 +226,10 @@ goToAllBtn.setOnClickListener(new View.OnClickListener() {
 
         @Override
         public int getItemCount() {
-            return restaurants.size();
+            if (restaurants.size() > 8)
+                return 8;
+            else
+                return restaurants.size();
         }
 
     }

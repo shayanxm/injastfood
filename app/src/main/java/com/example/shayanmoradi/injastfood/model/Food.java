@@ -6,16 +6,18 @@ public class Food {
     private int mfoodPrice;
     private double mfoodOff;
     private int mfoodRate;
+    private String mfoodDes;
     private String mfoodRestaurantName;
     private String mfoodCategoryName;
     private String mfoodImageAddress;
 
-    public Food(int mfoodId, String mfoodName, int mfoodPrice, double mfoodOff, int mfoodRate, String mfoodRestaurantName, String mfoodCategoryName, String mfoodImageAddress) {
+    public Food(int mfoodId, String mfoodName, int mfoodPrice, double mfoodOff, int mfoodRate, String mfoodDes, String mfoodRestaurantName, String mfoodCategoryName, String mfoodImageAddress) {
         this.mfoodId = mfoodId;
         this.mfoodName = mfoodName;
         this.mfoodPrice = mfoodPrice;
         this.mfoodOff = mfoodOff;
         this.mfoodRate = mfoodRate;
+        this.mfoodDes = mfoodDes;
         this.mfoodRestaurantName = mfoodRestaurantName;
         this.mfoodCategoryName = mfoodCategoryName;
         this.mfoodImageAddress = mfoodImageAddress;
@@ -51,5 +53,9 @@ public class Food {
 
     public String getMfoodImageAddress() {
         return mfoodImageAddress;
+    }
+
+    public String getMfoodDes() {
+        return mfoodDes;
     }
 }

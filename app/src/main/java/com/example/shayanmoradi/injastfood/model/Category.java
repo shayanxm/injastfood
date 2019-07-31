@@ -21,4 +21,21 @@ public class Category {
     public String getmCategoryName() {
         return mCategoryName;
     }
+
+    public int getmCategoryId() {
+        return mCategoryId;
+    }
+
+    public String getmCategoryRestaurantName() {
+        return mCategoryRestaurantName;
+    }
+
+    public int getmCategoryRestaurantId() {
+        return mCategoryRestaurantId;
+    }
+
+    public List<Food> getmFoodsInCAtegory() {
+        return mFoodsInCAtegory;
+    }
+
 }
