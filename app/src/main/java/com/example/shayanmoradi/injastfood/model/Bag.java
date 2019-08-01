@@ -10,9 +10,12 @@ public class Bag {
     private static Bag instance;
     static boolean empty = true;
 
-    private static String mbagRestaurantId;
+    private static int mbagRestaurantId;
     private static String mbagId;
-    private static List<Food> mfoodsInBag=new ArrayList<>();
+    private static List<Food> mfoodsInBag = new ArrayList<>();
+    private static List<Food> mFoodsInBagUnic = new ArrayList<>();
+    private static List<Integer> mFoodCount = new ArrayList<>();
+
     Context mContext;
 
     private Bag(Context context) {
@@ -32,7 +35,7 @@ public class Bag {
         this.empty = empty;
     }
 
-    public void setMbagRestaurantId(String mbagRestaurantId) {
+    public void setMbagRestaurantId(int mbagRestaurantId) {
         this.mbagRestaurantId = mbagRestaurantId;
     }
 
@@ -48,7 +51,7 @@ public class Bag {
         return empty;
     }
 
-    public String getMbagRestaurantId() {
+    public int getMbagRestaurantId() {
         return mbagRestaurantId;
     }
 
@@ -57,6 +60,7 @@ public class Bag {
     }
 
     public List<Food> getMfoodsInBag() {
+        unicListAndCounter();
         return mfoodsInBag;
     }
 
@@ -69,34 +73,72 @@ public class Bag {
     }
 
     public static void addToBag(Food food) {
-     //   if (otherRestBagCheck())
+        //   if (otherRestBagCheck())
         mfoodsInBag.add(mfoodsInBag.size(), food);
 
     }
+
     public static void removeFromBag(Food food) {
         //   if (otherRestBagCheck())
-        if (mfoodsInBag.size()==0)return;
-        boolean works=false;
-        for (int i=0;i<mfoodsInBag.size();i++){
-            if (mfoodsInBag.get(i).getMfoodId()==food.getMfoodId()){
+        if (mfoodsInBag.size() == 0) return;
+        boolean works = false;
+        for (int i = 0; i < mfoodsInBag.size(); i++) {
+            if (mfoodsInBag.get(i).getMfoodId() == food.getMfoodId()) {
                 mfoodsInBag.remove(food);
-            works=true;}
-        }if (!works)
-        Log.e("test","peyda nashod");
+                works = true;
+            }
+        }
+        if (!works)
+            Log.e("test", "peyda nashod");
 
 
     }
 
     public static boolean otherRestBagCheck() {
         for (int i = 0; i < mfoodsInBag.size(); i++) {
-            for (int j = 0; i < mfoodsInBag.size(); j++){
-                if (mfoodsInBag.get(i).getMfoodRestaurantName()==mfoodsInBag.get(j).getMfoodRestaurantName())
-                    Log.e("test","sefaresh faal az rest digr");
-                    return false;
+            for (int j = 0; i < mfoodsInBag.size(); j++) {
+                if (mfoodsInBag.get(i).getMfoodRestaurantName() == mfoodsInBag.get(j).getMfoodRestaurantName())
+                    Log.e("test", "sefaresh faal az rest digr");
+                return false;
             }
         }
-return true;
+        return true;
     }
 
+    public static void unicListAndCounter() {
+        //if (mFoodsInBagUnic.size() == 0)
+            mFoodsInBagUnic = new ArrayList<>(mfoodsInBag);
+        for (int i = 0; i < mFoodsInBagUnic.size(); i++) {
+            for (int j = 0; j < mFoodsInBagUnic.size(); j++) {
+                if (mFoodsInBagUnic.get(i).getMfoodId() == mFoodsInBagUnic.get(j).getMfoodId()) {
+                    if (i != j) {
+                        int temp = mFoodsInBagUnic.get(i).getmFoodInBagCount();
+                        temp++;
+                        mFoodsInBagUnic.get(i).setmFoodInBagCount(temp);
+                        mFoodsInBagUnic.remove(j);
+                    }
+                }
+            }
+        }
+       // removeRepet();
+
+    }
+
+    public static List<Food> getmFoodsInBagUnic() {
+        unicListAndCounter();
+        return mFoodsInBagUnic;
+    }
+
+    private static void removeRepet() {
+        for (int i = 0; i < mFoodsInBagUnic.size(); i++) {
+
+            for (int j = 0; j < mFoodsInBagUnic.size(); j++) {
+                if (i != j) {
+                    if (mFoodsInBagUnic.get(i).getMfoodId() == mFoodsInBagUnic.get(j).getMfoodId())
+                        mFoodsInBagUnic.remove(j);
+                }
+            }
+        }
+    }
 }
 

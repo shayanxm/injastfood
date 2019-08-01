@@ -20,6 +20,8 @@ import com.example.shayanmoradi.injastfood.view.restpage.RestPageActivity;
 import java.util.List;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -29,11 +31,11 @@ import androidx.recyclerview.widget.RecyclerView;
  */
 public class MenuFragment extends Fragment {
 
-    private TextView goToAllBtn;
-    private TextView goToREstBtn;
-    private TextView goToCandyBtn;
-    private TextView goToCaffeBtn;
-    private TextView goTOOthersBtn;
+    private CardView goToAllBtn;
+    private ConstraintLayout goToREstBtn;
+    private ConstraintLayout goToCandyBtn;
+    private ConstraintLayout goToCaffeBtn;
+    private ConstraintLayout goTOOthersBtn;
     List<Restaurant> allRestList;
     List<Restaurant> restOrderAsRate;
     List<Restaurant> restOrderASOffer;
@@ -62,10 +64,10 @@ public class MenuFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_menu, container, false);
         goToAllBtn = view.findViewById(R.id.go_to_all_rest_btn);
 
-        goToREstBtn = view.findViewById(R.id.go_to_rest_tv);
-        goToCandyBtn = view.findViewById(R.id.go_to_candy_tv);
-        goToCaffeBtn = view.findViewById(R.id.go_to_caffe_tv);
-        goTOOthersBtn = view.findViewById(R.id.go_to_others_tv);
+        goToREstBtn = view.findViewById(R.id.go_to_rest_cl);
+        goToCandyBtn = view.findViewById(R.id.go_to_candy_cl);
+        goToCaffeBtn = view.findViewById(R.id.go_to_caffe_cl);
+        goTOOthersBtn = view.findViewById(R.id.go_to_others_cl);
         topRestRv = view.findViewById(R.id.top_foods_rv);
         offerRestRv = view.findViewById(R.id.offer_foods_rv);
         restOrderAsRate = StaticDataGenerator.getInstance(getActivity()).getSortedRestListAsRate();

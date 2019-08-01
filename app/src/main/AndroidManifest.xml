@@ -3,7 +3,6 @@
     package="com.example.shayanmoradi.injastfood">
 
     <application
-
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -11,14 +10,22 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".view.menu.MenuActivity">
+
+        </activity>
+        <activity android:name=".view.list.ShowListOfRestActivity" />
+        <activity android:name=".view.restpage.RestPageActivity" />
+        <activity android:name=".view.shoppingbag.ShoppingBagActivity" />
+        <activity
+            android:name=".SplashActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="@string/title_activity_splash"
+            android:theme="@style/FullscreenTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".view.list.ShowListOfRestActivity" />
-        <activity android:name=".view.restpage.RestPageActivity"></activity>
     </application>
 
 </manifest>

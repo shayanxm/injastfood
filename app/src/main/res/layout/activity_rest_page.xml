@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".view.restpage.RestPageActivity"
     android:id="@+id/rest_page_continer"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    >
 
 </LinearLayout>

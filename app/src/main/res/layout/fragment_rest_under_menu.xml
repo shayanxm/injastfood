@@ -11,5 +11,12 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rest_under_menu_cv"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="50dp"
+        android:layout_weight="1" />
+
+    <Button
+        android:id="@+id/go_to_shopping_bag_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="مشاهده سبد خرید" />
 </LinearLayout>

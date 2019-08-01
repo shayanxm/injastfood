@@ -10,6 +10,7 @@ public class Food {
     private String mfoodRestaurantName;
     private String mfoodCategoryName;
     private String mfoodImageAddress;
+    private int mFoodInBagCount=0;
 
     public Food(int mfoodId, String mfoodName, int mfoodPrice, double mfoodOff, int mfoodRate, String mfoodDes, String mfoodRestaurantName, String mfoodCategoryName, String mfoodImageAddress) {
         this.mfoodId = mfoodId;
@@ -21,6 +22,14 @@ public class Food {
         this.mfoodRestaurantName = mfoodRestaurantName;
         this.mfoodCategoryName = mfoodCategoryName;
         this.mfoodImageAddress = mfoodImageAddress;
+    }
+
+    public void setmFoodInBagCount(int mFoodInBagCount) {
+        this.mFoodInBagCount = mFoodInBagCount;
+    }
+
+    public int getmFoodInBagCount() {
+        return mFoodInBagCount;
     }
 
     public int getMfoodId() {

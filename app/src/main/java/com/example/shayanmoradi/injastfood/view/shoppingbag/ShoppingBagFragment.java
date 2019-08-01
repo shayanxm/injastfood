@@ -1,9 +1,8 @@
-package com.example.shayanmoradi.injastfood.view.restpage;
+package com.example.shayanmoradi.injastfood.view.shoppingbag;
 
 
 import android.app.Fragment;
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,9 +15,8 @@ import com.example.shayanmoradi.injastfood.R;
 import com.example.shayanmoradi.injastfood.model.Bag;
 import com.example.shayanmoradi.injastfood.model.Category;
 import com.example.shayanmoradi.injastfood.model.Food;
-import com.example.shayanmoradi.injastfood.model.StaticDataGenerator;
-import com.example.shayanmoradi.injastfood.view.shoppingbag.ShoppingBagActivity;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import androidx.annotation.NonNull;
@@ -26,81 +24,60 @@ import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import static com.example.shayanmoradi.injastfood.view.restpage.RestMenuFragment.CategoryId;
-
 /**
  * A simple {@link Fragment} subclass.
  */
-public class RestUnderMenuFragment extends androidx.fragment.app.Fragment {
-    TextView textView;
+public class ShoppingBagFragment extends androidx.fragment.app.Fragment {
     RecyclerView restFoodMenuRv;
     int categoryId;
     Category currentCategory;
-    List<Food> categoryFoods;
+    List<Food> ShoppingBagFoods = new ArrayList<>();
+
     Bag currentBag;
     int currentRestId;
-    private Button goToShoppingBagBtn;
 
-
-    public static RestUnderMenuFragment newInstance(int catId) {
+    public static ShoppingBagFragment newInstance() {
 
         Bundle args = new Bundle();
-        args.putSerializable(CategoryId, catId);
 
-        RestUnderMenuFragment fragment = new RestUnderMenuFragment();
+        ShoppingBagFragment fragment = new ShoppingBagFragment();
         fragment.setArguments(args);
         return fragment;
     }
 
-    public RestUnderMenuFragment() {
+    public ShoppingBagFragment() {
         // Required empty public constructor
     }
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        categoryId = (Integer) getArguments().getSerializable(CategoryId);
-        currentCategory = StaticDataGenerator.getInstance(getContext()).searchCategoryById(categoryId);
-        currentRestId = currentCategory.getmCategoryRestaurantId();
-        categoryFoods = currentCategory.getmFoodsInCAtegory();
+        //   categoryId = (Integer) getArguments().getSerializable(CategoryId);
+        // currentCategory = StaticDataGenerator.getInstance(getContext()).searchCategoryById(categoryId);
+        currentBag = Bag.getInstance(getContext());
+        currentRestId = Bag.getInstance(getContext()).getMbagRestaurantId();
+        //  ShoppingBagFoods =StaticDataGenerator.getInstance(getContext()).serarchRestById(currentRestId).get;
+        ShoppingBagFoods = currentBag.getmFoodsInBagUnic();
         currentBag = Bag.getInstance(getActivity());
-
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_rest_under_menu, container, false);
+        View view = inflater.inflate(R.layout.fragment_shopping_bag, container, false);
 
-        restFoodMenuRv = view.findViewById(R.id.rest_under_menu_cv);
-        goToShoppingBagBtn=view.findViewById(R.id.go_to_shopping_bag_btn);
-
+        restFoodMenuRv = view.findViewById(R.id.shopping_bag_rv);
         restFoodMenuRv.setLayoutManager(new LinearLayoutManager(getActivity()));
-
-
-//        TaskAdapter tasksAdapter = new TaskAdapter(categoryFoods);
-//        restFoodMenuRv.setAdapter(tasksAdapter);
         updateUI();
-
-        goToShoppingBagBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getActivity(),ShoppingBagActivity.class);
-                startActivity(intent);
-
-            }
-        });
-
         return view;
-
     }
 
     public void updateUI() {
-        TaskAdapter tasksAdapter = new TaskAdapter(categoryFoods);
+        TaskAdapter tasksAdapter = new TaskAdapter(ShoppingBagFoods);
 
         if (tasksAdapter == null) {
-            tasksAdapter = new TaskAdapter(categoryFoods);
+            tasksAdapter = new TaskAdapter(ShoppingBagFoods);
             restFoodMenuRv.setAdapter(tasksAdapter);
         } else {
             tasksAdapter.notifyDataSetChanged();
@@ -246,4 +223,6 @@ public class RestUnderMenuFragment extends androidx.fragment.app.Fragment {
         }
 
     }
+
+
 }
