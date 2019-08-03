@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layoutDirection="ltr"
+
     android:orientation="vertical"
     tools:context=".view.menu.MenuFragment">
 
@@ -32,9 +32,9 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
-                        android:layout_marginTop="8dp"
-                        android:layout_marginEnd="8dp"
-                        android:layout_marginRight="8dp"
+                        android:layout_marginTop="4dp"
+                        android:layout_marginEnd="16dp"
+                        android:layout_marginRight="16dp"
                         android:fontFamily="@font/iransanslight"
                         android:gravity="right"
                         android:text="ادرس شما"
@@ -49,8 +49,8 @@
                         android:id="@+id/textView8"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginEnd="8dp"
-                        android:layout_marginRight="8dp"
+                        android:layout_marginEnd="16dp"
+                        android:layout_marginRight="16dp"
                         android:layout_marginBottom="8dp"
                         android:fontFamily="@font/iransans"
                         android:text="سردار حنگل شمالی خ چمران ک ۱۲ پ ۴  "
@@ -58,30 +58,30 @@
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toStartOf="@+id/imageView4"
                         app:layout_constraintTop_toBottomOf="@+id/title_text"
-                        app:layout_constraintVertical_bias="0.555" />
+                        app:layout_constraintVertical_bias="1.0" />
 
                     <ImageView
                         android:id="@+id/imageView4"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
                         android:layout_marginTop="8dp"
-                        android:layout_marginEnd="8dp"
-                        android:layout_marginRight="8dp"
+                        android:layout_marginEnd="16dp"
+                        android:layout_marginRight="16dp"
                         android:layout_marginBottom="8dp"
-                        android:src="@android:drawable/btn_star"
+                        android:src="@drawable/menu"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
                     <ImageView
                         android:id="@+id/imageView6"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
                         android:layout_marginStart="8dp"
                         android:layout_marginLeft="8dp"
                         android:layout_marginTop="8dp"
                         android:layout_marginBottom="8dp"
-                        android:src="@android:drawable/btn_star"
+                        android:src="@drawable/mail"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
@@ -108,6 +108,7 @@
 
 
             <androidx.cardview.widget.CardView
+
                 android:id="@+id/go_to_all_rest_btn"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -171,6 +172,7 @@
             </androidx.cardview.widget.CardView>
 
             <LinearLayout
+                android:layoutDirection="ltr"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal">
@@ -373,13 +375,16 @@
             </LinearLayout>
 
             <TextView
+
                 android:id="@+id/textView"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layoutDirection="ltr"
-                android:text="top rateds"
+                android:layout_marginRight="8dp"
+                android:fontFamily="@font/iransansbold"
+                android:layoutDirection="rtl"
+                android:text="برترین ها"
                 android:textColor="#000"
-                android:textSize="16sp" />
+                android:textSize="18sp" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/top_foods_rv"
@@ -390,10 +395,14 @@
 
             <TextView
                 android:id="@+id/textView2"
-                android:layout_width="wrap_content"
+
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layoutDirection="ltr"
-                android:text="best Offers"
+                android:layout_marginTop="32dp"
+                android:layout_marginRight="8dp"
+                android:fontFamily="@font/iransansbold"
+                android:layoutDirection="rtl"
+                android:text="رستوران های دارای تخفیف"
                 android:textColor="#000"
                 android:textSize="16sp" />
 
@@ -403,6 +412,7 @@
                 android:layout_height="match_parent"
                 android:layout_marginTop="16dp"
                 android:layout_marginRight="8dp"
+                android:layout_marginBottom="32dp"
                 android:layoutDirection="rtl" />
         </LinearLayout>
     </ScrollView>

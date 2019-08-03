@@ -30,6 +30,9 @@ public class Bag {
         return instance;
     }
 
+    public static void emptizeTheBag(Context context) {
+        instance = new Bag(context);
+    }
 
     public void setEmpty(boolean empty) {
         this.empty = empty;
@@ -107,7 +110,7 @@ public class Bag {
 
     public static void unicListAndCounter() {
         //if (mFoodsInBagUnic.size() == 0)
-            mFoodsInBagUnic = new ArrayList<>(mfoodsInBag);
+        mFoodsInBagUnic = new ArrayList<>(mfoodsInBag);
         for (int i = 0; i < mFoodsInBagUnic.size(); i++) {
             for (int j = 0; j < mFoodsInBagUnic.size(); j++) {
                 if (mFoodsInBagUnic.get(i).getMfoodId() == mFoodsInBagUnic.get(j).getMfoodId()) {
@@ -120,7 +123,7 @@ public class Bag {
                 }
             }
         }
-       // removeRepet();
+        // removeRepet();
 
     }
 

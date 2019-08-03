@@ -80,12 +80,20 @@ public class RestPageFragment extends Fragment {
         viewPagerAdapter = new ViewPagerAdapter(getActivity().getSupportFragmentManager());
         //viewPagerAdapter = new ViewPagerAdapter(this.getChildFragmentManager());
         RestMenuFragment tabLayoutFragment = RestMenuFragment.newInstance(resturauntID);
+        CmAndCoupsFragment tabLayoutFragment1 = CmAndCoupsFragment.newInstance(0);
+        CmAndCoupsFragment tabLayoutFragment2 = CmAndCoupsFragment.newInstance(1);
+
+
+
+        viewPagerAdapter.addFrag(tabLayoutFragment1, "کوپن");
+        viewPagerAdapter.addFrag(tabLayoutFragment2, "نظرات");
         viewPagerAdapter.addFrag(tabLayoutFragment, "منو");
+
         //viewPagerAdapter.addFrag(tabLayoutFragment, "نظرات");
         // viewPagerAdapter.addFrag(tabLayoutFragment, "کوپن");
         viewPager.setAdapter(viewPagerAdapter);
 
-        viewPager.setCurrentItem(1);
+        viewPager.setCurrentItem(2);
 
 
         return view;

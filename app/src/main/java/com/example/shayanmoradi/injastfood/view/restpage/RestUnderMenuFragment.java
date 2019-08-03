@@ -23,6 +23,7 @@ import java.util.List;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -39,7 +40,7 @@ public class RestUnderMenuFragment extends androidx.fragment.app.Fragment {
     List<Food> categoryFoods;
     Bag currentBag;
     int currentRestId;
-    private Button goToShoppingBagBtn;
+    private ConstraintLayout goToShoppingBagBtn;
 
 
     public static RestUnderMenuFragment newInstance(int catId) {
@@ -74,7 +75,7 @@ public class RestUnderMenuFragment extends androidx.fragment.app.Fragment {
         View view = inflater.inflate(R.layout.fragment_rest_under_menu, container, false);
 
         restFoodMenuRv = view.findViewById(R.id.rest_under_menu_cv);
-        goToShoppingBagBtn=view.findViewById(R.id.go_to_shopping_bag_btn);
+        goToShoppingBagBtn = view.findViewById(R.id.go_to_shopping_bag_cons);
 
         restFoodMenuRv.setLayoutManager(new LinearLayoutManager(getActivity()));
 
@@ -83,10 +84,13 @@ public class RestUnderMenuFragment extends androidx.fragment.app.Fragment {
 //        restFoodMenuRv.setAdapter(tasksAdapter);
         updateUI();
 
+        visInvisTheBtn();
+
+
         goToShoppingBagBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getActivity(),ShoppingBagActivity.class);
+                Intent intent = new Intent(getActivity(), ShoppingBagActivity.class);
                 startActivity(intent);
 
             }
@@ -94,6 +98,16 @@ public class RestUnderMenuFragment extends androidx.fragment.app.Fragment {
 
         return view;
 
+    }
+
+    private void visInvisTheBtn() {
+        List<Food> foodList = Bag.getInstance(getContext()).getMfoodsInBag();
+        if (!(foodList.size() > 0)) {
+            goToShoppingBagBtn.setVisibility(View.GONE);
+
+        }else {
+            goToShoppingBagBtn.setVisibility(View.VISIBLE);
+        }
     }
 
     public void updateUI() {
@@ -141,6 +155,7 @@ public class RestUnderMenuFragment extends androidx.fragment.app.Fragment {
 
                     currentBag.addToBag(mfood);
                     Bag.setInstance(currentBag);
+                    visInvisTheBtn();
                     updateUI();
 
 
@@ -152,6 +167,7 @@ public class RestUnderMenuFragment extends androidx.fragment.app.Fragment {
                     currentBag.removeFromBag(mfood);
                     currentBag.setMbagRestaurantId(currentRestId);
                     Bag.setInstance(currentBag);
+                    visInvisTheBtn();
                     updateUI();
 
 

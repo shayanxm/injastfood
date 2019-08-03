@@ -3,6 +3,8 @@ package com.example.shayanmoradi.injastfood.model;
 import android.content.Context;
 import android.util.Log;
 
+import com.example.shayanmoradi.injastfood.R;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -15,17 +17,41 @@ public class StaticDataGenerator {
 
     public static List<Restaurant> mAllRestList;
     private static List<Integer> mRestaurantId = Arrays.asList(new Integer[]{12, 13, 14, 15});
-    private static List<String> mRestaurantName = Arrays.asList(new String[]{"pizzahot", "kababi", "pasta food", "azhdar zapata"});
-    private static List<Integer> mRestaurantRate = Arrays.asList(new Integer[]{3, 2, 4, 2});
+    private static List<String> mRestaurantName = Arrays.asList(new String[]{"ایران فود", "نامی نو لند", "سیب ", "ایرانویچ"});
+    private static List<Integer> mRestaurantRate = Arrays.asList(new Integer[]{1,2,3,4});
 
-    private static List<String> mRestaurantDes = Arrays.asList(new String[]{"xxpizzahot", "kxxababi", "xxpasta", "ghool sandwitch"});
+    private static List<String> mRestaurantDes = Arrays.asList(new String[]{"سنتی ", "کبابی", "فست فود", "ساندویج "});
 
     private static List<List<Category>> mRestaurantCategoreis = new ArrayList<>();
     private static List<List<Food>> mRestaurantAllFoods = new ArrayList<>();
     private static List<Double> mRestaurantDeliveryPrice = Arrays.asList(new Double[]{2500.0, 3500.0, 4500.0, 2000.0});
     private static List<Double> mRestaurantOff = Arrays.asList(new Double[]{20.0, 10.0, 30.0, 0.0});
-    private static List<String> mRestaurantImageAddress = Arrays.asList(new String[]{"ponak", "kxxazzbabi", "xxpzzasta", ""});
-    private static List<String> mRestaurantAddress = Arrays.asList(new String[]{"ponak", "satari", "kaj", "azadi"});
+    private static List<Integer> mRestaurantImageAddress = Arrays.asList(new Integer[]{
+            R.drawable.f1,
+            R.drawable.f2,
+            R.drawable.f3,
+            R.drawable.f4,
+            R.drawable.f5,
+            R.drawable.f6,
+            R.drawable.f7,
+            R.drawable.f8,
+            R.drawable.f9,
+            R.drawable.f10
+    });
+    private static List<Integer> mRestauranSecondtImageAddress = Arrays.asList(new Integer[]{
+            R.drawable.r1,
+            R.drawable.r2,
+            R.drawable.r3,
+            R.drawable.r4,
+            R.drawable.r5,
+            R.drawable.r6,
+            R.drawable.r7,
+            R.drawable.r8,
+            R.drawable.r9,
+            R.drawable.r10
+    });
+
+    private static List<String> mRestaurantAddress = Arrays.asList(new String[]{"پونک", "خیابان ازادی", "سعادت اباد", "تهران پارس"});
     private static List<Restaurant.Partiation> mRestaurantKind = Arrays.asList(new Restaurant.Partiation[]{Restaurant.Partiation.REsturant, Restaurant.Partiation.Candy, Restaurant.Partiation.Caffe, Restaurant.Partiation.Others});
 
 
@@ -71,6 +97,7 @@ public class StaticDataGenerator {
                     mRestaurantAllFoods.get(i),
                     mRestaurantDeliveryPrice.get(i),
                     mRestaurantImageAddress.get(i),
+                    mRestauranSecondtImageAddress.get(i),
                     mRestaurantKind.get(i));
             resList.add(i, restaurant);
 
@@ -216,8 +243,6 @@ public class StaticDataGenerator {
         Log.e("test", "category ba in id yaft nashod");
         return null;
     }
-
-
 
 
 }

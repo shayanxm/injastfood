@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.shayanmoradi.injastfood.R;
 import com.example.shayanmoradi.injastfood.model.Bag;
@@ -21,6 +22,7 @@ import java.util.List;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -35,7 +37,8 @@ public class ShoppingBagFragment extends androidx.fragment.app.Fragment {
 
     Bag currentBag;
     int currentRestId;
-
+    private ConstraintLayout finilizeBagCons;
+Bag bag;
     public static ShoppingBagFragment newInstance() {
 
         Bundle args = new Bundle();
@@ -56,6 +59,7 @@ public class ShoppingBagFragment extends androidx.fragment.app.Fragment {
         // currentCategory = StaticDataGenerator.getInstance(getContext()).searchCategoryById(categoryId);
         currentBag = Bag.getInstance(getContext());
         currentRestId = Bag.getInstance(getContext()).getMbagRestaurantId();
+
         //  ShoppingBagFoods =StaticDataGenerator.getInstance(getContext()).serarchRestById(currentRestId).get;
         ShoppingBagFoods = currentBag.getmFoodsInBagUnic();
         currentBag = Bag.getInstance(getActivity());
@@ -66,7 +70,15 @@ public class ShoppingBagFragment extends androidx.fragment.app.Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_shopping_bag, container, false);
+finilizeBagCons=view.findViewById(R.id.finialize_bag_cons);
+finilizeBagCons.setOnClickListener(new View.OnClickListener() {
+    @Override
+    public void onClick(View v) {
+        Toast.makeText(getActivity(), "سفارش با موفقیت ثبت شد.", Toast.LENGTH_LONG).show();
 
+        Bag.emptizeTheBag(getActivity());
+    }
+});
         restFoodMenuRv = view.findViewById(R.id.shopping_bag_rv);
         restFoodMenuRv.setLayoutManager(new LinearLayoutManager(getActivity()));
         updateUI();

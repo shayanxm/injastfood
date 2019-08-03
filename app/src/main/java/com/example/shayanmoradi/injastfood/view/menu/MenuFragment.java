@@ -23,6 +23,7 @@ import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -78,8 +79,8 @@ public class MenuFragment extends Fragment {
 
         topRestRv.setAdapter(tasksAdapter);
 
-        offerRestRv.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayout.HORIZONTAL, false));
-        TaskAdapter offersAdapter = new TaskAdapter(restOrderASOffer);
+        offerRestRv.setLayoutManager(new GridLayoutManager(getActivity(), 2, GridLayoutManager.HORIZONTAL, false));
+        TaskAdapter2 offersAdapter = new TaskAdapter2(restOrderASOffer);
         offerRestRv.setAdapter(offersAdapter);
 
 
@@ -185,6 +186,7 @@ public class MenuFragment extends Fragment {
             restDesTv.setText(restaurant.getmRestaurantDes());
             restAddTv.setText(restaurant.getmRestaurantAddress());
             restDelMoneyTv.setText(restaurant.getmRestaurantDeliveryPrice() + "");
+            restImg.setImageResource(restaurant.getmRestaurantImageAddress());
 
 
         }
@@ -211,6 +213,50 @@ public class MenuFragment extends Fragment {
         public TaskHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
             LayoutInflater inflater = LayoutInflater.from(parent.getContext());
             View view = inflater.inflate(R.layout.itemes_in_top_foods_rv, parent, false);
+            TaskHolder crimeHolder = new TaskHolder(view);
+            context = view.getContext();
+            return crimeHolder;
+        }
+
+
+        @Override
+        public void onBindViewHolder(@NonNull TaskHolder holder, int position) {
+
+
+            Restaurant restaurant = restaurants.get(position);
+
+            holder.bind(restaurant);
+        }
+
+        @Override
+        public int getItemCount() {
+            if (restaurants.size() > 8)
+                return 8;
+            else
+                return restaurants.size();
+        }
+
+    }
+
+    public class TaskAdapter2 extends RecyclerView.Adapter<TaskHolder> {
+        private List<Restaurant> restaurants;
+        private Context context;
+
+        public TaskAdapter2(List<Restaurant> restaurantList) {
+            restaurants = restaurantList;
+        }
+
+
+        public void setCrimes(List<Restaurant> restaurantList) {
+            restaurants = restaurantList;
+        }
+
+
+        @NonNull
+        @Override
+        public TaskHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+            LayoutInflater inflater = LayoutInflater.from(parent.getContext());
+            View view = inflater.inflate(R.layout.items_in_offer_rv, parent, false);
             TaskHolder crimeHolder = new TaskHolder(view);
             context = view.getContext();
             return crimeHolder;

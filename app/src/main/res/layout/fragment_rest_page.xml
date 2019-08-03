@@ -13,50 +13,87 @@
 
         <com.google.android.material.appbar.AppBarLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:layout_scrollFlags="scroll|enterAlways|snap">
+            android:layout_height="wrap_content">
 
             <androidx.appcompat.widget.Toolbar
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:layout_scrollFlags="scroll|enterAlways|snap">
+                android:layout_height="54dp"
+                android:background="#ef008b">
 
 
-                <FrameLayout
+                <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
 
-                    <ImageButton
-                        android:id="@+id/back_btn"
-                        android:layout_width="32dp"
-                        android:layout_height="32dp"
-                        android:layout_gravity="center|end"
+                    <TextView
+
+                        android:id="@+id/title_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
                         android:layout_marginTop="4dp"
-                        android:layout_marginRight="8dp"
-                        android:layout_marginBottom="2dp" />
+                        android:layout_marginEnd="16dp"
+                        android:layout_marginRight="16dp"
+                        android:fontFamily="@font/iransanslight"
+                        android:gravity="right"
+                        android:text="ادرس شما"
+                        android:textAllCaps="false"
+                        android:textColor="#f48fb1"
+                        android:textSize="12sp"
+                        android:textStyle="bold"
+                        app:layout_constraintEnd_toStartOf="@+id/imageView4"
+                        app:layout_constraintTop_toTopOf="parent" />
 
                     <TextView
-                        android:id="@+id/title_text"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_gravity="center"
-                        android:layout_marginLeft="10dp"
-                        android:layout_marginRight="36dp"
-                        android:layout_marginBottom="2dp"
-                        android:gravity="right"
-                        android:text="تنظیمات"
-                        android:textAllCaps="false"
-                        android:textColor="#fff"
-                        android:textSize="20sp"
-                        android:textStyle="bold" />
+                        android:id="@+id/textView8"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="16dp"
+                        android:layout_marginRight="16dp"
+                        android:layout_marginBottom="8dp"
+                        android:fontFamily="@font/iransans"
+                        android:text="سردار حنگل شمالی خ چمران ک ۱۲ پ ۴  "
+                        android:textColor="@android:color/white"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toStartOf="@+id/imageView4"
+                        app:layout_constraintTop_toBottomOf="@+id/title_text"
+                        app:layout_constraintVertical_bias="1.0" />
 
-                </FrameLayout>
+                    <ImageView
+                        android:id="@+id/imageView4"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginEnd="16dp"
+                        android:layout_marginRight="16dp"
+                        android:layout_marginBottom="8dp"
+                        android:src="@drawable/back_2"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <ImageView
+                        android:id="@+id/imageView6"
+                        android:layout_width="20dp"
+                        android:layout_height="20dp"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginLeft="8dp"
+                        android:layout_marginTop="8dp"
+                        android:layout_marginBottom="8dp"
+                        android:src="@drawable/mail"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
 
 
             </androidx.appcompat.widget.Toolbar>
 
 
         </com.google.android.material.appbar.AppBarLayout>
+
+
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
 
@@ -68,7 +105,7 @@
         <ImageView
             android:id="@+id/imageView"
             android:layout_width="388dp"
-            android:layout_height="203dp"
+            android:layout_height="202dp"
             android:layout_marginStart="8dp"
             android:layout_marginLeft="8dp"
             android:layout_marginBottom="8dp"
@@ -157,10 +194,10 @@
         android:background="@color/colorPrimary"
         android:layoutDirection="ltr"
         android:scrollbarSize="3dp"
-        android:textDirection="rtl"
+
         app:tabGravity="fill"
         app:tabIndicatorColor="@android:color/white"
-        app:tabMode="scrollable"
+
         app:tabSelectedTextColor="@android:color/white"
         app:tabTextAppearance="@android:style/TextAppearance.Widget.TabWidget"
         app:tabTextColor="@android:color/darker_gray">

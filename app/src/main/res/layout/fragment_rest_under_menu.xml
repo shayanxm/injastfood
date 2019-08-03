@@ -3,10 +3,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".view.restpage.RestUnderMenuFragment"
     android:orientation="vertical">
 
-    <!-- TODO: Update blank fragment layout -->
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rest_under_menu_cv"
@@ -14,9 +14,30 @@
         android:layout_height="50dp"
         android:layout_weight="1" />
 
-    <Button
-        android:id="@+id/go_to_shopping_bag_btn"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/go_to_shopping_bag_cons"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="مشاهده سبد خرید" />
+        android:layout_height="52dp"
+        android:background="#ef008b"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/textView7"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginBottom="8dp"
+            android:fontFamily="@font/iransans"
+            android:layoutDirection="rtl"
+            android:text="مشاهده سبد خرید"
+            android:textColor="@android:color/white"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </LinearLayout>

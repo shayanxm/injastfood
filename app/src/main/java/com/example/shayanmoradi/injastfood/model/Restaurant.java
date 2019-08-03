@@ -16,10 +16,11 @@ public class Restaurant {
     private List<Category>mRestaurantCategoreis;
     private List<Food>mRestaurantAllFoods;
     private double mRestaurantDeliveryPrice;
-    private String mRestaurantImageAddress;
+    private int mRestaurantImageAddress;
+    private int mRestaurantSecondImageAddress;
     private Partiation mRestKind;
 
-    public Restaurant(int mRestaurantId, String mRestaurantName, int mRestaurantRate, double mRestaurantOff, String mRestaurantDes, String mRestaurantAddress, List<Category> mRestaurantCategoreis, List<Food> mRestaurantAllFoods, double mRestaurantDeliveryPrice, String mRestaurantImageAddress, Partiation mRestKind) {
+    public Restaurant(int mRestaurantId, String mRestaurantName, int mRestaurantRate, double mRestaurantOff, String mRestaurantDes, String mRestaurantAddress, List<Category> mRestaurantCategoreis, List<Food> mRestaurantAllFoods, double mRestaurantDeliveryPrice, int mRestaurantImageAddress, int mRestaurantSecondImageAddress, Partiation mRestKind) {
         this.mRestaurantId = mRestaurantId;
         this.mRestaurantName = mRestaurantName;
         this.mRestaurantRate = mRestaurantRate;
@@ -30,6 +31,7 @@ public class Restaurant {
         this.mRestaurantAllFoods = mRestaurantAllFoods;
         this.mRestaurantDeliveryPrice = mRestaurantDeliveryPrice;
         this.mRestaurantImageAddress = mRestaurantImageAddress;
+        this.mRestaurantSecondImageAddress = mRestaurantSecondImageAddress;
         this.mRestKind = mRestKind;
     }
 
@@ -60,7 +62,7 @@ public class Restaurant {
         return mRestaurantDeliveryPrice;
     }
 
-    public String getmRestaurantImageAddress() {
+    public int getmRestaurantImageAddress() {
         return mRestaurantImageAddress;
     }
 
@@ -78,5 +80,9 @@ public class Restaurant {
 
     public double getmRestaurantOff() {
         return mRestaurantOff;
+    }
+
+    public int getmRestaurantSecondImageAddress() {
+        return mRestaurantSecondImageAddress;
     }
 }
