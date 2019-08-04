@@ -7,6 +7,7 @@ import com.example.shayanmoradi.injastfood.R;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 public class StaticDataGenerator {
@@ -16,16 +17,16 @@ public class StaticDataGenerator {
     private Context mContext;
 
     public static List<Restaurant> mAllRestList;
-    private static List<Integer> mRestaurantId = Arrays.asList(new Integer[]{12, 13, 14, 15});
-    private static List<String> mRestaurantName = Arrays.asList(new String[]{"ایران فود", "نامی نو لند", "سیب ", "ایرانویچ"});
-    private static List<Integer> mRestaurantRate = Arrays.asList(new Integer[]{1,2,3,4});
+    private static List<Integer> mRestaurantId = Arrays.asList(new Integer[]{12, 13, 14, 15,16,17,18,19,20,21,22,23,24,25,26});
+    private static List<String> mRestaurantName = Arrays.asList(new String[]{"ایران فود", "نامی نو لند", "سیب ", "ایرانویچ", "هفت جنار", "پیتزا دارت ", "کافه شین","بامداد", "سعید", "ابمیوه نعمت", "ایرانویچ"});
+    private static List<Integer> mRestaurantRate = Arrays.asList(new Integer[]{1,2,3,41,2,3,4,5,5});
 
-    private static List<String> mRestaurantDes = Arrays.asList(new String[]{"سنتی ", "کبابی", "فست فود", "ساندویج "});
+    private static List<String> mRestaurantDes = Arrays.asList(new String[]{"ایران فود", "نامی نو لند", "سیب ", "ایرانویچ","ایران فود", "نامی نو لند", "سیب ", "ایرانویچ","سنتی ", "کبابی", "فست فود", "ساندویج "});
 
     private static List<List<Category>> mRestaurantCategoreis = new ArrayList<>();
     private static List<List<Food>> mRestaurantAllFoods = new ArrayList<>();
-    private static List<Double> mRestaurantDeliveryPrice = Arrays.asList(new Double[]{2500.0, 3500.0, 4500.0, 2000.0});
-    private static List<Double> mRestaurantOff = Arrays.asList(new Double[]{20.0, 10.0, 30.0, 0.0});
+    private static List<Double> mRestaurantDeliveryPrice = Arrays.asList(new Double[]{2500.0, 3500.0, 4500.0, 2000.0,2500.0, 3500.0, 4500.0, 2000.0,2500.0, 3500.0, 4500.0, 2000.0});
+    private static List<Double> mRestaurantOff = Arrays.asList(new Double[]{20.0, 10.0, 30.0, 0.0,40.0, 60.0, 30.0,22.0, 0.0,35.0});
     private static List<Integer> mRestaurantImageAddress = Arrays.asList(new Integer[]{
             R.drawable.f1,
             R.drawable.f2,
@@ -51,8 +52,8 @@ public class StaticDataGenerator {
             R.drawable.r10
     });
 
-    private static List<String> mRestaurantAddress = Arrays.asList(new String[]{"پونک", "خیابان ازادی", "سعادت اباد", "تهران پارس"});
-    private static List<Restaurant.Partiation> mRestaurantKind = Arrays.asList(new Restaurant.Partiation[]{Restaurant.Partiation.REsturant, Restaurant.Partiation.Candy, Restaurant.Partiation.Caffe, Restaurant.Partiation.Others});
+    private static List<String> mRestaurantAddress = Arrays.asList(new String[]{"پونک", "خیابان ازادی", "سعادت اباد", "تهران پارس","پونک", "خیابان ازادی", "سعادت اباد", "تهران پارس","پونک", "خیابان ازادی", "سعادت اباد", "تهران پارس"});
+    private static List<Restaurant.Partiation> mRestaurantKind = Arrays.asList(new Restaurant.Partiation[]{Restaurant.Partiation.REsturant,Restaurant.Partiation.REsturant,Restaurant.Partiation.REsturant,Restaurant.Partiation.REsturant, Restaurant.Partiation.Candy,Restaurant.Partiation.Candy, Restaurant.Partiation.Caffe, Restaurant.Partiation.Caffe, Restaurant.Partiation.Others});
 
 
     static Bag currerntBAg;
@@ -60,7 +61,7 @@ public class StaticDataGenerator {
     static List<Food> foods2 = new ArrayList<>();
     static List<Food> foods3 = new ArrayList<>();
     static List<Food> foods4 = new ArrayList<>();
-
+    static List<Food> foods5 = new ArrayList<>();
     private StaticDataGenerator(Context context) {
 
         this.mContext = context;
@@ -106,23 +107,27 @@ public class StaticDataGenerator {
     }
 
     private static void categoryinter() {
-        Category category1 = new Category("bernji", 1, "pizzahot", 12, foods1);
-        Category category2 = new Category("fast foods", 2, "pizzahot", 12, foods2);
+        Category category1 = new Category("پیتزا", 1, "پیتزا", 12, foods1);
+        Category category2 = new Category("ساندویچ", 2, "ساندویچ", 12, foods2);
 
-        Category category3 = new Category("portarafdar", 3, "kababi", 13, foods2);
-        Category category4 = new Category("fast foods", 4, "kababi", 13, foods2);
+        Category category3 = new Category("کباب", 3, "کباب", 13, foods3);
+        Category category4 = new Category("fast برنجی", 4, "برنجی", 13, foods4);
 
 
-        Category category5 = new Category("portarafdar", 5, "pasta food", 14, foods2);
-        Category category6 = new Category("fast foods", 6, "pasta food", 14, foods2);
+        Category category5 = new Category("برنجی", 5, "برنجی", 14, foods5);
+        Category category6 = new Category("فست فودی", 6, "فست فودی", 14, foods1);
 
-        Category category7 = new Category("portarafdar", 7, "pasta food", 14, foods2);
-        Category category8 = new Category("fast foods", 8, "pasta food", 14, foods2);
+        Category category7 = new Category("غیره ", 7, "غیره ", 14, foods2);
+        Category category8 = new Category("شیرینی", 8, "شیرینی", 14, foods3);
 
         List<Category> tempCategories = new ArrayList<>();
         List<Category> tempCategories2 = new ArrayList<>();
         List<Category> tempCategories3 = new ArrayList<>();
         List<Category> tempCategories4 = new ArrayList<>();
+        List<Category> tempCategories5 = new ArrayList<>();
+        List<Category> tempCategories6 = new ArrayList<>();
+        List<Category> tempCategories7 = new ArrayList<>();
+        List<Category> tempCategories8 = new ArrayList<>();
 
         tempCategories.add(0, category1);
         tempCategories.add(1, category2);
@@ -136,47 +141,71 @@ public class StaticDataGenerator {
         tempCategories4.add(0, category7);
         tempCategories4.add(1, category8);
 
+        tempCategories5.add(0, category1);
+        tempCategories5.add(1, category2);
+
+        tempCategories6.add(0, category3);
+        tempCategories6.add(1, category4);
+
+        tempCategories7.add(0, category5);
+        tempCategories7.add(1, category6);
+
+        tempCategories8.add(0, category7);
+        tempCategories8.add(1, category8);
+
+
         mRestaurantCategoreis.add(0, (List<Category>) tempCategories);
         mRestaurantCategoreis.add(1, (List<Category>) tempCategories2);
         mRestaurantCategoreis.add(2, (List<Category>) tempCategories3);
         mRestaurantCategoreis.add(3, (List<Category>) tempCategories4);
+        mRestaurantCategoreis.add(0, (List<Category>) tempCategories5);
+        mRestaurantCategoreis.add(1, (List<Category>) tempCategories6);
+        mRestaurantCategoreis.add(2, (List<Category>) tempCategories7);
+        mRestaurantCategoreis.add(3, (List<Category>) tempCategories8);
         Log.e("wtf", "     " + mRestaurantCategoreis.size());
 
-        Food food1 = new Food(1, "kabab", 12000, 0.0, 2, "no des", "pizzahot", category1.getmCategoryName(), "noImage");
-        Food food2 = new Food(2, "joj", 12000, 0.0, 3, "bad maze af", "pizzahot", category1.getmCategoryName(), "noImage");
+        Food food1 = new Food(1, "قیمه بادمجون", 17000, 0.0, 2, "خانگی", "pizzahot", category1.getmCategoryName(),   R.drawable.f1);
+        Food food2 = new Food(2, "پیتز پپرونی", 250000, 0.0, 3, "تند", "pizzahot", category1.getmCategoryName(),   R.drawable.f2);
 
-        Food food3 = new Food(3, "pitza", 12000, 0.0, 2, "no des", "pizzahot", category2.getmCategoryName(), "noImage");
-        Food food4 = new Food(4, "sandwitch", 12000, 0.0, 3, "bad maze af", "pizzahot", category2.getmCategoryName(), "noImage");
+        Food food3 = new Food(3, "زرشک پلو با مرغ", 18000, 0.0, 1, "ران مرغ", "pizzahot", category2.getmCategoryName(),   R.drawable.f3);
+        Food food4 = new Food(4, "نگینی", 27000, 0.0, 3, "همراه با برنج", "pizzahot", category2.getmCategoryName(),   R.drawable.f4);
 
 
-        Food food5 = new Food(5, "1", 12000, 0.0, 2, "no des", "kababi", category3.getmCategoryName(), "noImage");
-        Food food6 = new Food(6, "2", 12000, 0.0, 3, "bad maze af", "kababi", category3.getmCategoryName(), "noImage");
+        Food food5 = new Food(5, "ساندویچ", 18000, 0.0, 4, "هات داگ", "kababi", category3.getmCategoryName(),   R.drawable.f5);
+        Food food6 = new Food(6, "کیک", 38000, 0.0, 3, "شکلاتی", "kababi", category3.getmCategoryName(),   R.drawable.f6);
 
-        Food food7 = new Food(7, "3", 12000, 0.0, 2, "no des", "kababi", category4.getmCategoryName(), "noImage");
-        Food food8 = new Food(8, "4", 12000, 0.0, 3, "bad maze af", "kababi", category4.getmCategoryName(), "noImage");
+        Food food7 = new Food(7, "نان سیر", 12000, 0.0, 5, "پیش غذا", "kababi", category4.getmCategoryName(),   R.drawable.f7);
+        Food food8 = new Food(8, "سالاد", 8000, 0.0, 1, "سالاد فصل", "kababi", category4.getmCategoryName(),   R.drawable.f8);
 
+        ///
+        Food food9 = new Food(9, "کوبیده", 25000, 0.0, 1, "دو یسخ", "kababi", category4.getmCategoryName(),   R.drawable.f9);
+        Food food10 = new Food(10, "نیمرو", 12000, 0.0, 5, "نیمرو با نان", "kababi", category4.getmCategoryName(),   R.drawable.f10);
 
         foods1.add(0, food1);
         foods1.add(1, food2);
+
         foods2.add(0, food3);
         foods2.add(1, food4);
 
         foods3.add(0, food5);
         foods3.add(1, food6);
+
         foods4.add(0, food7);
         foods4.add(1, food8);
 
-        mRestaurantAllFoods.add(0, foods1);
+        foods5.add(0, food9);
+        foods5.add(1, food10);
 
+        mRestaurantAllFoods.add(0, foods1);
         mRestaurantAllFoods.add(1, foods2);
         mRestaurantAllFoods.add(2, foods3);
-
         mRestaurantAllFoods.add(3, foods4);
-
         mRestaurantAllFoods.add(4, foods4);
         mRestaurantAllFoods.add(5, foods4);
         mRestaurantAllFoods.add(6, foods4);
         mRestaurantAllFoods.add(7, foods4);
+        mRestaurantAllFoods.add(8, foods5);
+        mRestaurantAllFoods.add(9, foods5);
 
 
     }
@@ -200,6 +229,7 @@ public class StaticDataGenerator {
                 }
             }
         }
+        Collections.reverse(basicList);
         return basicList;
     }
 
@@ -218,7 +248,8 @@ public class StaticDataGenerator {
                 }
             }
         }
-        return basicList;
+          Collections.reverse(basicList);
+       return basicList;
     }
 
     public static Restaurant serarchRestById(int id) {

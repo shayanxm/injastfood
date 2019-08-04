@@ -143,6 +143,9 @@ public class MenuFragment extends Fragment {
         private TextView restDelMoneyTv;
         private ImageView restImg;
         private Restaurant mRestaurant;
+        private TextView restRateTv;
+        private TextView restOfferTv;
+        int postion = 0;
 
         public TaskHolder(@NonNull final View itemView) {
             super(itemView);
@@ -155,6 +158,10 @@ public class MenuFragment extends Fragment {
             restAddTv = itemView.findViewById(R.id.items_add_top);
             restDelMoneyTv = itemView.findViewById(R.id.items_del_price_top);
             restImg = itemView.findViewById(R.id.items_image_top);
+
+                restRateTv = itemView.findViewById(R.id.items_rate_top);
+
+
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -187,6 +194,77 @@ public class MenuFragment extends Fragment {
             restAddTv.setText(restaurant.getmRestaurantAddress());
             restDelMoneyTv.setText(restaurant.getmRestaurantDeliveryPrice() + "");
             restImg.setImageResource(restaurant.getmRestaurantImageAddress());
+double temp = restaurant.getmRestaurantRate();
+                restRateTv.setText( temp+"");
+
+
+        }
+
+
+    }
+    class TaskHolder2 extends RecyclerView.ViewHolder {
+        private TextView restNameTv;
+        private TextView restDesTv;
+        private TextView restAddTv;
+        private TextView restDelMoneyTv;
+        private ImageView restImg;
+        private Restaurant mRestaurant;
+        private TextView restRateTv;
+        private TextView restOfferTv;
+        int postion = 0;
+
+        public TaskHolder2(@NonNull final View itemView) {
+            super(itemView);
+
+
+            //
+            // KindNameTv = itemView.findViewById(R.id.kind_name_tv);
+            restNameTv = itemView.findViewById(R.id.items_name_top);
+            restDesTv = itemView.findViewById(R.id.items_des_top);
+            restAddTv = itemView.findViewById(R.id.items_add_top);
+            restDelMoneyTv = itemView.findViewById(R.id.items_del_price_top);
+            restImg = itemView.findViewById(R.id.items_image_top);
+
+
+                restOfferTv = itemView.findViewById(R.id.items_offer_top);
+
+
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+
+
+                    //    mTask.setYesForEditNoForCreate(false);
+                    itemView.getContext();
+
+                    Intent intent = RestPageActivity.newIntent(getActivity(), mRestaurant.getmRestaurantId());
+
+                    startActivity(intent);
+
+//                    FragmentManager fragmentManager = getFragmentManager();
+//                    TaskDetailFragment detailFragment = TaskDetailFragment.newInstance(mTask.getmTaskId());
+//                    detailFragment.show(fragmentManager, "dialog");
+
+                }
+            });
+        }
+
+        public void bind(Restaurant restaurant) {
+            mRestaurant = restaurant;
+
+            ////
+            //      set view up here
+            ////
+
+            restNameTv.setText(restaurant.getmRestaurantName());
+            restDesTv.setText(restaurant.getmRestaurantDes());
+            restAddTv.setText(restaurant.getmRestaurantAddress());
+            restDelMoneyTv.setText(restaurant.getmRestaurantDeliveryPrice() + "");
+            restImg.setImageResource(restaurant.getmRestaurantImageAddress());
+
+                restOfferTv.setText(restaurant.getmRestaurantOff() + "%");
+
 
 
         }
@@ -238,7 +316,7 @@ public class MenuFragment extends Fragment {
 
     }
 
-    public class TaskAdapter2 extends RecyclerView.Adapter<TaskHolder> {
+    public class TaskAdapter2 extends RecyclerView.Adapter<TaskHolder2> {
         private List<Restaurant> restaurants;
         private Context context;
 
@@ -254,17 +332,17 @@ public class MenuFragment extends Fragment {
 
         @NonNull
         @Override
-        public TaskHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        public TaskHolder2 onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
             LayoutInflater inflater = LayoutInflater.from(parent.getContext());
             View view = inflater.inflate(R.layout.items_in_offer_rv, parent, false);
-            TaskHolder crimeHolder = new TaskHolder(view);
+            TaskHolder2 crimeHolder = new TaskHolder2(view);
             context = view.getContext();
             return crimeHolder;
         }
 
 
         @Override
-        public void onBindViewHolder(@NonNull TaskHolder holder, int position) {
+        public void onBindViewHolder(@NonNull TaskHolder2 holder, int position) {
 
 
             Restaurant restaurant = restaurants.get(position);

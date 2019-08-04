@@ -9,10 +9,23 @@ public class Food {
     private String mfoodDes;
     private String mfoodRestaurantName;
     private String mfoodCategoryName;
-    private String mfoodImageAddress;
+    private int mfoodImageAddress;
     private int mFoodInBagCount=0;
 
-    public Food(int mfoodId, String mfoodName, int mfoodPrice, double mfoodOff, int mfoodRate, String mfoodDes, String mfoodRestaurantName, String mfoodCategoryName, String mfoodImageAddress) {
+    public Food(int mfoodId, String mfoodName, int mfoodPrice, double mfoodOff, int mfoodRate, String mfoodDes, String mfoodRestaurantName, String mfoodCategoryName, int mfoodImageAddress, int mFoodInBagCount) {
+        this.mfoodId = mfoodId;
+        this.mfoodName = mfoodName;
+        this.mfoodPrice = mfoodPrice;
+        this.mfoodOff = mfoodOff;
+        this.mfoodRate = mfoodRate;
+        this.mfoodDes = mfoodDes;
+        this.mfoodRestaurantName = mfoodRestaurantName;
+        this.mfoodCategoryName = mfoodCategoryName;
+        this.mfoodImageAddress = mfoodImageAddress;
+        this.mFoodInBagCount = mFoodInBagCount;
+    }
+
+    public Food(int mfoodId, String mfoodName, int mfoodPrice, double mfoodOff, int mfoodRate, String mfoodDes, String mfoodRestaurantName, String mfoodCategoryName, int mfoodImageAddress) {
         this.mfoodId = mfoodId;
         this.mfoodName = mfoodName;
         this.mfoodPrice = mfoodPrice;
@@ -60,7 +73,7 @@ public class Food {
         return mfoodCategoryName;
     }
 
-    public String getMfoodImageAddress() {
+    public int getMfoodImageAddress() {
         return mfoodImageAddress;
     }
 

@@ -149,6 +149,7 @@ public class RestUnderMenuFragment extends androidx.fragment.app.Fragment {
             addToBagBtn = itemView.findViewById(R.id.add_to_bag_btn);
             removeFromBagBtn = itemView.findViewById(R.id.delete_from_bag_btn);
             bagCount = itemView.findViewById(R.id.bag_count);
+            foodImgIv=itemView.findViewById(R.id.item_food_image);
             addToBagBtn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -204,6 +205,7 @@ public class RestUnderMenuFragment extends androidx.fragment.app.Fragment {
             int foodCount = getFoodCount(food);
 
             bagCount.setText(foodCount + "");
+            foodImgIv.setImageResource(food.getMfoodImageAddress());
         }
 
         private int getFoodCount(Food food) {

@@ -105,12 +105,10 @@
         <ImageView
             android:id="@+id/imageView"
             android:layout_width="388dp"
-            android:layout_height="202dp"
+            android:layout_height="264dp"
             android:layout_marginStart="8dp"
-            android:layout_marginLeft="8dp"
-            android:layout_marginBottom="8dp"
-            android:alpha="0.3"
-            android:src="@drawable/ic_launcher_background"
+            android:alpha="0.8"
+            android:src="@drawable/salad_2068220_960_720"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -120,9 +118,9 @@
             android:id="@+id/rest_img_iv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginRight="8dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginRight="16dp"
             android:src="@mipmap/ic_launcher"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
@@ -137,14 +135,16 @@
             android:layout_marginEnd="8dp"
             android:layout_marginRight="8dp"
             android:layout_marginBottom="8dp"
+            android:fontFamily="@font/iransansmeduim"
             android:text="پیتزا هات پونک"
             android:textColor="@android:color/white"
+            android:textSize="20sp"
             app:layout_constraintBottom_toTopOf="@+id/rest_del_price_tv"
             app:layout_constraintEnd_toStartOf="@+id/rest_img_iv"
-            app:layout_constraintHorizontal_bias="0.933"
+            app:layout_constraintHorizontal_bias="0.823"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.137" />
+            app:layout_constraintVertical_bias="0.125" />
 
         <TextView
             android:id="@+id/textView2"
@@ -152,23 +152,30 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:layout_marginLeft="8dp"
+            android:layout_marginTop="8dp"
             android:layout_marginEnd="8dp"
             android:layout_marginRight="8dp"
             android:layout_marginBottom="16dp"
+            android:fontFamily="@font/iransanslight"
             android:text="پیک"
+            android:textColor="@android:color/white"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.16"
-            app:layout_constraintStart_toEndOf="@+id/rest_del_price_tv" />
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toEndOf="@+id/rest_del_price_tv"
+            app:layout_constraintTop_toBottomOf="@+id/rest_img_iv"
+            app:layout_constraintVertical_bias="1.0" />
 
         <TextView
             android:id="@+id/rest_del_price_tv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="152dp"
-            android:layout_marginLeft="152dp"
+            android:layout_marginStart="112dp"
+            android:layout_marginLeft="112dp"
             android:layout_marginBottom="16dp"
+            android:fontFamily="@font/iransanslight"
             android:text="۳۰۰۰ تومان"
+            android:textColor="@android:color/white"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@+id/textView6" />
 
@@ -180,6 +187,7 @@
             android:layout_marginLeft="16dp"
             android:layout_marginBottom="16dp"
             android:background="@android:color/white"
+            android:fontFamily="@font/iransanslight"
             android:text="امروز ـ سریع ترین زمان"
             android:textColor="@color/colorAccent"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -191,16 +199,15 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="0dp"
-        android:background="@color/colorPrimary"
         android:layoutDirection="ltr"
         android:scrollbarSize="3dp"
 
         app:tabGravity="fill"
-        app:tabIndicatorColor="@android:color/white"
 
-        app:tabSelectedTextColor="@android:color/white"
+        app:tabIndicatorColor="#ef008b"
+        app:tabSelectedTextColor="#ef008b"
         app:tabTextAppearance="@android:style/TextAppearance.Widget.TabWidget"
-        app:tabTextColor="@android:color/darker_gray">
+        app:tabTextColor="@android:color/black">
 
 
     </com.google.android.material.tabs.TabLayout>

@@ -185,6 +185,7 @@ public class ShowListOfRestFragment extends Fragment {
             restDesTv = itemView.findViewById(R.id.rest_des_item);
             restAddTv = itemView.findViewById(R.id.rest_add_item);
             restDelMoneyTv = itemView.findViewById(R.id.rest_del_item);
+            restImg=itemView.findViewById(R.id.rest_image_item);
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -216,6 +217,7 @@ public class ShowListOfRestFragment extends Fragment {
             restDesTv.setText(restaurant.getmRestaurantDes());
             restAddTv.setText(restaurant.getmRestaurantAddress());
             restDelMoneyTv.setText(restaurant.getmRestaurantDeliveryPrice() + "");
+            restImg.setImageResource(restaurant.getmRestaurantSecondImageAddress());
         }
 
 

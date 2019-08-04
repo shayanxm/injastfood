@@ -197,7 +197,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:scaleType="center"
-                        app:srcCompat="@drawable/rest_img_pm"
+                        app:srcCompat="@drawable/otherkind"
                         tools:layout_editor_absoluteX="8dp"
                         tools:layout_editor_absoluteY="8dp" />
 
@@ -242,7 +242,7 @@
                         android:id="@+id/menu_img2"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        app:srcCompat="@drawable/rest_img_pm"
+                        app:srcCompat="@drawable/coffekind"
                         tools:layout_editor_absoluteX="8dp"
                         tools:layout_editor_absoluteY="8dp" />
 
@@ -289,7 +289,8 @@
                         android:id="@+id/menu_img3"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        app:srcCompat="@drawable/rest_img_pm"
+                        android:scaleType="fitCenter"
+                        app:srcCompat="@drawable/candkind"
                         tools:layout_editor_absoluteX="8dp"
                         tools:layout_editor_absoluteY="8dp" />
 
@@ -334,7 +335,7 @@
                         android:id="@+id/menu_img4"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        app:srcCompat="@drawable/rest_img_pm"
+                        app:srcCompat="@drawable/reskind"
                         tools:layout_editor_absoluteX="8dp"
                         tools:layout_editor_absoluteY="8dp" />
 

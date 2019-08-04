@@ -40,6 +40,7 @@
                 android:layout_marginTop="20dp"
                 android:layout_marginEnd="8dp"
                 android:layout_marginRight="8dp"
+                android:fontFamily="@font/iransansmeduim"
                 android:text="ارامیس (ارامش)"
                 android:textColor="@android:color/background_dark"
                 android:textSize="18sp"
@@ -54,13 +55,13 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:layout_marginLeft="8dp"
-                android:layout_marginTop="12dp"
                 android:layout_marginEnd="8dp"
                 android:layout_marginRight="8dp"
+                android:fontFamily="@font/iransans"
                 android:text="فست فودپیتزا.سادویچ.برگر."
                 android:textColor="#252525"
                 app:layout_constraintEnd_toStartOf="@+id/rest_image_item"
-                app:layout_constraintHorizontal_bias="0.963"
+                app:layout_constraintHorizontal_bias="0.954"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/rest_name_item" />
 
@@ -70,12 +71,12 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:layout_marginLeft="8dp"
-                android:layout_marginTop="12dp"
                 android:layout_marginEnd="8dp"
                 android:layout_marginRight="8dp"
+                android:fontFamily="@font/iransans"
                 android:text="فست فودپیتزا.سادویچ.برگر.........."
                 app:layout_constraintEnd_toStartOf="@+id/rest_image_item"
-                app:layout_constraintHorizontal_bias="0.946"
+                app:layout_constraintHorizontal_bias="0.9"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/rest_des_item" />
 
@@ -83,16 +84,13 @@
                 android:id="@+id/textView3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:layout_marginLeft="8dp"
                 android:layout_marginEnd="8dp"
                 android:layout_marginRight="8dp"
-                android:layout_marginBottom="12dp"
+                android:layout_marginBottom="4dp"
+                android:fontFamily="@font/iransans"
                 android:text="پیک"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/rest_image_item"
-                app:layout_constraintHorizontal_bias="0.79"
-                app:layout_constraintStart_toStartOf="parent" />
+                app:layout_constraintEnd_toStartOf="@+id/rest_image_item" />
 
             <TextView
                 android:id="@+id/rest_del_item"
@@ -101,6 +99,7 @@
                 android:layout_marginEnd="4dp"
                 android:layout_marginRight="4dp"
                 android:layout_marginBottom="8dp"
+                android:fontFamily="@font/iransans"
                 android:text="۳۰۰۰ تومان"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/textView3"

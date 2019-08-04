@@ -47,9 +47,10 @@ public class CmAndCoupsFragment extends androidx.fragment.app.Fragment {
         View view = inflater.inflate(R.layout.fragment_cm_and_coups, container, false);
         txtToShowTv = view.findViewById(R.id.no_active_tv);
         if (pageCode == 0) {
-            txtToShowTv.setText("در حال حاضر هیج کوپنی برای این رسوران فعال نیست");
+            txtToShowTv.setText(" کوپنی برای" +
+                    " این رسوران فعال نیست");
         }else
-            txtToShowTv.setText("در حال حاضر نظری برای این رستوران ثبت نشده");
+            txtToShowTv.setText(" نظری برای این رستوران ثبت نشده");
         return view;
     }
 

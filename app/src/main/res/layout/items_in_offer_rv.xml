@@ -37,6 +37,7 @@
                 android:layout_marginTop="8dp"
                 android:layout_marginEnd="8dp"
                 android:layout_marginRight="8dp"
+                android:fontFamily="@font/iransansmeduim"
                 android:text="پیتزا پرپروک"
                 android:textColor="@android:color/black"
                 android:textSize="16sp"
@@ -53,6 +54,7 @@
                 android:layout_marginTop="4dp"
                 android:layout_marginEnd="8dp"
                 android:layout_marginRight="8dp"
+                android:fontFamily="@font/iransans"
                 android:text="سعادت اباد"
                 android:textSize="12sp"
                 app:layout_constraintEnd_toStartOf="@+id/items_image_top"
@@ -68,6 +70,7 @@
                 android:layout_marginLeft="8dp"
                 android:layout_marginEnd="8dp"
                 android:layout_marginRight="8dp"
+                android:fontFamily="@font/iransans"
                 android:text="توضیحات"
                 android:textSize="12sp"
                 app:layout_constraintEnd_toStartOf="@+id/items_image_top"
@@ -83,6 +86,7 @@
                 android:layout_marginEnd="144dp"
                 android:layout_marginRight="144dp"
                 android:layout_marginBottom="8dp"
+                android:fontFamily="@font/iransans"
                 android:text="پیک"
                 android:textColor="@color/colorAccent"
                 android:textSize="12sp"
@@ -101,6 +105,7 @@
                 android:layout_marginEnd="8dp"
                 android:layout_marginRight="8dp"
                 android:layout_marginBottom="8dp"
+                android:fontFamily="@font/iransans"
                 android:text="۲۰۰۰ تومان"
                 android:textColor="@color/colorAccent"
                 android:textSize="12sp"
@@ -112,7 +117,7 @@
                 app:layout_constraintVertical_bias="1.0" />
 
             <TextView
-                android:id="@+id/textView9"
+                android:id="@+id/items_offer_top"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="#ef008b"

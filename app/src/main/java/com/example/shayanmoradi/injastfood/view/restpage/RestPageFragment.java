@@ -74,7 +74,7 @@ public class RestPageFragment extends Fragment {
 
         restNameTv.setText(currentRest.getmRestaurantName());
         restDelPrice.setText(currentRest.getmRestaurantDeliveryPrice()+"");
-
+restImgIV.setImageResource(currentRest.getmRestaurantSecondImageAddress());
 
         tabLayout.setupWithViewPager(viewPager);
         viewPagerAdapter = new ViewPagerAdapter(getActivity().getSupportFragmentManager());
