@@ -1,13 +1,17 @@
 package com.example.shayanmoradi.injastfood.view.restpage;
 
 
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.shayanmoradi.injastfood.R;
 import com.example.shayanmoradi.injastfood.model.Restaurant;
@@ -18,6 +22,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentStatePagerAdapter;
@@ -33,6 +38,7 @@ public class RestPageFragment extends Fragment {
     private ImageView restImgIV;
     private TextView restDelPrice;
     private TabLayout tabLayout;
+    TextView customerAddTv;
     ViewPager viewPager;
     private ViewPagerAdapter viewPagerAdapter;
     int resturauntID;
@@ -56,7 +62,7 @@ public class RestPageFragment extends Fragment {
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         resturauntID = (Integer) getArguments().getSerializable(restID);
-        Log.e("test,",resturauntID+"");
+        Log.e("test,", resturauntID + "");
         currentRest = StaticDataGenerator.getInstance(getActivity()).serarchRestById(resturauntID);
     }
 
@@ -68,13 +74,36 @@ public class RestPageFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_rest_page, container, false);
         tabLayout = view.findViewById(R.id.tabs);
         viewPager = view.findViewById(R.id.viewPager);
-        restNameTv=view.findViewById(R.id.rest_name_tv);
-        restDelPrice=view.findViewById(R.id.rest_del_price_tv);
-        restImgIV=view.findViewById(R.id.rest_img_iv);
+        restNameTv = view.findViewById(R.id.rest_name_tv);
+        restDelPrice = view.findViewById(R.id.rest_del_price_tv);
+        restImgIV = view.findViewById(R.id.rest_img_iv);
 
+         customerAddTv  =view.findViewById(R.id.customer_add_tv);
+        customerAddTv.setText(StaticDataGenerator.customerAddress);
+        customerAddTv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                alertEditTextKeyboardShown();
+            }
+        });
         restNameTv.setText(currentRest.getmRestaurantName());
-        restDelPrice.setText(currentRest.getmRestaurantDeliveryPrice()+"");
-restImgIV.setImageResource(currentRest.getmRestaurantSecondImageAddress());
+        restDelPrice.setText(currentRest.getmRestaurantDeliveryPrice() + "");
+        restImgIV.setImageResource(currentRest.getmRestaurantSecondImageAddress());
+        ImageView backIv = view.findViewById(R.id.imageView4);
+        backIv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getActivity().finish();
+            }
+        });
+
+        ImageView mailIv = view.findViewById(R.id.imageView6);
+        mailIv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getActivity(), "در حال حاضر پیامی وجود ندارد", Toast.LENGTH_LONG).show();
+            }
+        });
 
         tabLayout.setupWithViewPager(viewPager);
         viewPagerAdapter = new ViewPagerAdapter(getActivity().getSupportFragmentManager());
@@ -82,7 +111,6 @@ restImgIV.setImageResource(currentRest.getmRestaurantSecondImageAddress());
         RestMenuFragment tabLayoutFragment = RestMenuFragment.newInstance(resturauntID);
         CmAndCoupsFragment tabLayoutFragment1 = CmAndCoupsFragment.newInstance(0);
         CmAndCoupsFragment tabLayoutFragment2 = CmAndCoupsFragment.newInstance(1);
-
 
 
         viewPagerAdapter.addFrag(tabLayoutFragment1, "کوپن");
@@ -130,4 +158,49 @@ restImgIV.setImageResource(currentRest.getmRestaurantSecondImageAddress());
         }
 
     }
+    public void alertEditTextKeyboardShown() {
+
+        // creating the EditText widget programatically
+        final EditText editText = new EditText(getActivity());
+
+        // create the AlertDialog as final
+        final AlertDialog dialog = new AlertDialog.Builder(getActivity())
+                .setMessage("ادرس خود را وارد کنید")
+
+                // .setTitle("تعیین ادرس")
+                .setView(editText)
+
+                // Set the action buttons
+                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int id) {
+
+                        StaticDataGenerator.customerAddress=editText.getText().toString();
+                        customerAddTv.setText(StaticDataGenerator.customerAddress);
+                    }
+                })
+
+                .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int id) {
+                        // removes the AlertDialog in the screen
+                    }
+                })
+                .create();
+
+        // set the focus change listener of the EditText
+        // this part will make the soft keyboard automaticall visible
+        editText.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (hasFocus) {
+                    dialog.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE);
+                }
+            }
+        });
+
+        dialog.show();
+
+    }
+
 }

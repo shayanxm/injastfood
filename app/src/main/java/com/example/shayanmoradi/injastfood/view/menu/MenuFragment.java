@@ -2,14 +2,19 @@ package com.example.shayanmoradi.injastfood.view.menu;
 
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.ScrollView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.shayanmoradi.injastfood.R;
 import com.example.shayanmoradi.injastfood.model.Restaurant;
@@ -20,6 +25,8 @@ import com.example.shayanmoradi.injastfood.view.restpage.RestPageActivity;
 import java.util.List;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.cardview.widget.CardView;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
@@ -43,6 +50,8 @@ public class MenuFragment extends Fragment {
     Restaurant testRest;
     RecyclerView topRestRv;
     RecyclerView offerRestRv;
+    TextView customerAddTv;
+    ScrollView scrollView;
 
     public static MenuFragment newInstance() {
 
@@ -57,6 +66,17 @@ public class MenuFragment extends Fragment {
         // Required empty public constructor
     }
 
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        customerAddTv.setText(StaticDataGenerator.customerAddress);
+    }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -71,6 +91,35 @@ public class MenuFragment extends Fragment {
         goTOOthersBtn = view.findViewById(R.id.go_to_others_cl);
         topRestRv = view.findViewById(R.id.top_foods_rv);
         offerRestRv = view.findViewById(R.id.offer_foods_rv);
+        scrollView=view.findViewById(R.id.menu_scroll_view);
+   customerAddTv  =view.findViewById(R.id.customer_add_tv);
+   customerAddTv.setOnClickListener(new View.OnClickListener() {
+       @Override
+       public void onClick(View v) {
+           alertEditTextKeyboardShown();
+       }
+   });
+
+        if (StaticDataGenerator.isFirst)
+            alertEditTextKeyboardShown();
+        StaticDataGenerator.isFirst = false;
+        ImageView mailIv = view.findViewById(R.id.imageView6);
+        mailIv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getActivity(), "در حال حاضر پیامی وجود ندارد", Toast.LENGTH_LONG).show();
+            }
+        });
+
+        ImageView menu = view.findViewById(R.id.imageView4);
+        menu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getActivity(), "developed by shayan moradi", Toast.LENGTH_SHORT).show();
+            }
+        });
+
+
         restOrderAsRate = StaticDataGenerator.getInstance(getActivity()).getSortedRestListAsRate();
         restOrderASOffer = StaticDataGenerator.getInstance(getActivity()).getSortedRestListAsOffer();
 
@@ -159,7 +208,8 @@ public class MenuFragment extends Fragment {
             restDelMoneyTv = itemView.findViewById(R.id.items_del_price_top);
             restImg = itemView.findViewById(R.id.items_image_top);
 
-                restRateTv = itemView.findViewById(R.id.items_rate_top);
+
+            restRateTv = itemView.findViewById(R.id.items_rate_top);
 
 
             itemView.setOnClickListener(new View.OnClickListener() {
@@ -192,16 +242,17 @@ public class MenuFragment extends Fragment {
             restNameTv.setText(restaurant.getmRestaurantName());
             restDesTv.setText(restaurant.getmRestaurantDes());
             restAddTv.setText(restaurant.getmRestaurantAddress());
-            restDelMoneyTv.setText(restaurant.getmRestaurantDeliveryPrice() + "");
+            restDelMoneyTv.setText((int) restaurant.getmRestaurantDeliveryPrice() + " تومان");
             restImg.setImageResource(restaurant.getmRestaurantImageAddress());
-double temp = restaurant.getmRestaurantRate();
-                restRateTv.setText( temp+"");
+            double temp = restaurant.getmRestaurantRate();
+            restRateTv.setText(temp + "");
 
 
         }
 
 
     }
+
     class TaskHolder2 extends RecyclerView.ViewHolder {
         private TextView restNameTv;
         private TextView restDesTv;
@@ -222,12 +273,11 @@ double temp = restaurant.getmRestaurantRate();
             restNameTv = itemView.findViewById(R.id.items_name_top);
             restDesTv = itemView.findViewById(R.id.items_des_top);
             restAddTv = itemView.findViewById(R.id.items_add_top);
-            restDelMoneyTv = itemView.findViewById(R.id.items_del_price_top);
+            // restDelMoneyTv = itemView.findViewById(R.id.items_del_price_top);
             restImg = itemView.findViewById(R.id.items_image_top);
 
 
-                restOfferTv = itemView.findViewById(R.id.items_offer_top);
-
+            restOfferTv = itemView.findViewById(R.id.items_offer_top);
 
 
             itemView.setOnClickListener(new View.OnClickListener() {
@@ -260,11 +310,10 @@ double temp = restaurant.getmRestaurantRate();
             restNameTv.setText(restaurant.getmRestaurantName());
             restDesTv.setText(restaurant.getmRestaurantDes());
             restAddTv.setText(restaurant.getmRestaurantAddress());
-            restDelMoneyTv.setText(restaurant.getmRestaurantDeliveryPrice() + "");
+            // restDelMoneyTv.setText((int)restaurant.getmRestaurantDeliveryPrice() + " تومان ");
             restImg.setImageResource(restaurant.getmRestaurantImageAddress());
 
-                restOfferTv.setText(restaurant.getmRestaurantOff() + "%");
-
+            restOfferTv.setText(restaurant.getmRestaurantOff() + "%");
 
 
         }
@@ -357,6 +406,52 @@ double temp = restaurant.getmRestaurantRate();
             else
                 return restaurants.size();
         }
+
+    }
+
+    public void alertEditTextKeyboardShown() {
+
+        // creating the EditText widget programatically
+        final EditText editText = new EditText(getActivity());
+
+        // create the AlertDialog as final
+        final AlertDialog dialog = new AlertDialog.Builder(getActivity())
+                .setMessage("ادرس خود را وارد کنید")
+
+                // .setTitle("تعیین ادرس")
+                .setView(editText)
+
+                // Set the action buttons
+                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int id) {
+
+                        StaticDataGenerator.customerAddress=editText.getText().toString();
+                        customerAddTv.setText(StaticDataGenerator.customerAddress);
+                        scrollView.scrollTo(0,0);
+                    }
+                })
+
+                .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int id) {
+                        // removes the AlertDialog in the screen
+                    }
+                })
+                .create();
+
+        // set the focus change listener of the EditText
+        // this part will make the soft keyboard automaticall visible
+        editText.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (hasFocus) {
+                    dialog.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE);
+                }
+            }
+        });
+
+        dialog.show();
 
     }
 

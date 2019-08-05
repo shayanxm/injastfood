@@ -46,14 +46,14 @@
                         app:layout_constraintTop_toTopOf="parent" />
 
                     <TextView
-                        android:id="@+id/textView8"
+                        android:id="@+id/customer_add_tv"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginEnd="16dp"
                         android:layout_marginRight="16dp"
                         android:layout_marginBottom="8dp"
                         android:fontFamily="@font/iransans"
-                        android:text="سردار حنگل شمالی خ چمران ک ۱۲ پ ۴  "
+                        android:text="نامشخص"
                         android:textColor="@android:color/white"
                         app:layout_constraintBottom_toBottomOf="parent"
                         app:layout_constraintEnd_toStartOf="@+id/imageView4"
@@ -98,6 +98,7 @@
     </androidx.coordinatorlayout.widget.CoordinatorLayout>
 
     <ScrollView
+        android:id="@+id/menu_scroll_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 

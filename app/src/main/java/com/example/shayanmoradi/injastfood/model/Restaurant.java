@@ -85,4 +85,5 @@ public class Restaurant {
     public int getmRestaurantSecondImageAddress() {
         return mRestaurantSecondImageAddress;
     }
+
 }

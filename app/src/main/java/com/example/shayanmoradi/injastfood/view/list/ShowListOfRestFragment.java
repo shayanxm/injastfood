@@ -2,14 +2,18 @@ package com.example.shayanmoradi.injastfood.view.list;
 
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.shayanmoradi.injastfood.R;
 import com.example.shayanmoradi.injastfood.model.Restaurant;
@@ -20,6 +24,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -36,6 +41,7 @@ public class ShowListOfRestFragment extends Fragment {
     private static int incomingPageInt = -1;
     String searchS;
     int partiationINt;
+    TextView customerAddTv;
     Restaurant.Partiation partiationionzed;
     List<Restaurant> showRestList = new ArrayList<>();
 
@@ -106,6 +112,30 @@ public class ShowListOfRestFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_show_list_of_rest, container, false);
         Log.v("test", (Integer) getArguments().getSerializable(kindCode) + "");
         restKindsRv = view.findViewById(R.id.show_list_rv);
+        ImageView backIv = view.findViewById(R.id.imageView4);
+        customerAddTv  =view.findViewById(R.id.customer_add_tv);
+       customerAddTv.setText(StaticDataGenerator.customerAddress);
+        customerAddTv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                alertEditTextKeyboardShown();
+            }
+        });
+
+
+        backIv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getActivity().finish();
+            }
+        });
+        ImageView mailIv = view.findViewById(R.id.imageView6);
+        mailIv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getActivity(), "در حال حاضر پیامی وجود ندارد", Toast.LENGTH_LONG).show();
+            }
+        });
 
 
         restKindsRv.setLayoutManager(new LinearLayoutManager(getActivity()));
@@ -185,7 +215,7 @@ public class ShowListOfRestFragment extends Fragment {
             restDesTv = itemView.findViewById(R.id.rest_des_item);
             restAddTv = itemView.findViewById(R.id.rest_add_item);
             restDelMoneyTv = itemView.findViewById(R.id.rest_del_item);
-            restImg=itemView.findViewById(R.id.rest_image_item);
+            restImg = itemView.findViewById(R.id.rest_image_item);
 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -216,7 +246,7 @@ public class ShowListOfRestFragment extends Fragment {
             restNameTv.setText(restaurant.getmRestaurantName());
             restDesTv.setText(restaurant.getmRestaurantDes());
             restAddTv.setText(restaurant.getmRestaurantAddress());
-            restDelMoneyTv.setText(restaurant.getmRestaurantDeliveryPrice() + "");
+            restDelMoneyTv.setText((int) restaurant.getmRestaurantDeliveryPrice() + " تومان ");
             restImg.setImageResource(restaurant.getmRestaurantSecondImageAddress());
         }
 
@@ -262,6 +292,50 @@ public class ShowListOfRestFragment extends Fragment {
             return restaurants.size();
         }
 
+    }    public void alertEditTextKeyboardShown() {
+
+        // creating the EditText widget programatically
+        final EditText editText = new EditText(getActivity());
+
+        // create the AlertDialog as final
+        final AlertDialog dialog = new AlertDialog.Builder(getActivity())
+                .setMessage("ادرس خود را وارد کنید")
+
+                // .setTitle("تعیین ادرس")
+                .setView(editText)
+
+                // Set the action buttons
+                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int id) {
+
+                        StaticDataGenerator.customerAddress=editText.getText().toString();
+                        customerAddTv.setText(StaticDataGenerator.customerAddress);
+                    }
+                })
+
+                .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int id) {
+                        // removes the AlertDialog in the screen
+                    }
+                })
+                .create();
+
+        // set the focus change listener of the EditText
+        // this part will make the soft keyboard automaticall visible
+        editText.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+                if (hasFocus) {
+                    dialog.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_VISIBLE);
+                }
+            }
+        });
+
+        dialog.show();
+
     }
+
 
 }

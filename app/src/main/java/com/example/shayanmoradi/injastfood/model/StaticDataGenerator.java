@@ -17,16 +17,16 @@ public class StaticDataGenerator {
     private Context mContext;
 
     public static List<Restaurant> mAllRestList;
-    private static List<Integer> mRestaurantId = Arrays.asList(new Integer[]{12, 13, 14, 15,16,17,18,19,20,21,22,23,24,25,26});
-    private static List<String> mRestaurantName = Arrays.asList(new String[]{"ایران فود", "نامی نو لند", "سیب ", "ایرانویچ", "هفت جنار", "پیتزا دارت ", "کافه شین","بامداد", "سعید", "ابمیوه نعمت", "ایرانویچ"});
-    private static List<Integer> mRestaurantRate = Arrays.asList(new Integer[]{1,2,3,41,2,3,4,5,5});
+    private static List<Integer> mRestaurantId = Arrays.asList(new Integer[]{12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26});
+    private static List<String> mRestaurantName = Arrays.asList(new String[]{"ایران فود", "نامی نو لند", "سیب ", "ایرانویچ", "هفت جنار", "پیتزا دارت ", "کافه شین", "بامداد", "سعید", "ابمیوه نعمت", "ایرانویچ"});
+    private static List<Integer> mRestaurantRate = Arrays.asList(new Integer[]{1, 2, 3, 41, 2, 3, 4, 5, 5});
 
-    private static List<String> mRestaurantDes = Arrays.asList(new String[]{"ایران فود", "نامی نو لند", "سیب ", "ایرانویچ","ایران فود", "نامی نو لند", "سیب ", "ایرانویچ","سنتی ", "کبابی", "فست فود", "ساندویج "});
+    private static List<String> mRestaurantDes = Arrays.asList(new String[]{"ایران فود", "نامی نو لند", "سیب ", "ایرانویچ", "ایران فود", "نامی نو لند", "سیب ", "ایرانویچ", "سنتی ", "کبابی", "فست فود", "ساندویج "});
 
     private static List<List<Category>> mRestaurantCategoreis = new ArrayList<>();
     private static List<List<Food>> mRestaurantAllFoods = new ArrayList<>();
-    private static List<Double> mRestaurantDeliveryPrice = Arrays.asList(new Double[]{2500.0, 3500.0, 4500.0, 2000.0,2500.0, 3500.0, 4500.0, 2000.0,2500.0, 3500.0, 4500.0, 2000.0});
-    private static List<Double> mRestaurantOff = Arrays.asList(new Double[]{20.0, 10.0, 30.0, 0.0,40.0, 60.0, 30.0,22.0, 0.0,35.0});
+    private static List<Double> mRestaurantDeliveryPrice = Arrays.asList(new Double[]{2500.0, 3500.0, 4500.0, 2000.0, 2500.0, 3500.0, 4500.0, 2000.0, 2500.0, 3500.0, 4500.0, 2000.0});
+    private static List<Double> mRestaurantOff = Arrays.asList(new Double[]{20.0, 10.0, 30.0, 0.0, 40.0, 60.0, 30.0, 22.0, 0.0, 35.0});
     private static List<Integer> mRestaurantImageAddress = Arrays.asList(new Integer[]{
             R.drawable.f1,
             R.drawable.f2,
@@ -52,8 +52,8 @@ public class StaticDataGenerator {
             R.drawable.r10
     });
 
-    private static List<String> mRestaurantAddress = Arrays.asList(new String[]{"پونک", "خیابان ازادی", "سعادت اباد", "تهران پارس","پونک", "خیابان ازادی", "سعادت اباد", "تهران پارس","پونک", "خیابان ازادی", "سعادت اباد", "تهران پارس"});
-    private static List<Restaurant.Partiation> mRestaurantKind = Arrays.asList(new Restaurant.Partiation[]{Restaurant.Partiation.REsturant,Restaurant.Partiation.REsturant,Restaurant.Partiation.REsturant,Restaurant.Partiation.REsturant, Restaurant.Partiation.Candy,Restaurant.Partiation.Candy, Restaurant.Partiation.Caffe, Restaurant.Partiation.Caffe, Restaurant.Partiation.Others});
+    private static List<String> mRestaurantAddress = Arrays.asList(new String[]{"پونک", "خیابان ازادی", "سعادت اباد", "تهران پارس", "پونک", "خیابان ازادی", "سعادت اباد", "تهران پارس", "پونک", "خیابان ازادی", "سعادت اباد", "تهران پارس"});
+    private static List<Restaurant.Partiation> mRestaurantKind = Arrays.asList(new Restaurant.Partiation[]{Restaurant.Partiation.REsturant, Restaurant.Partiation.REsturant, Restaurant.Partiation.REsturant, Restaurant.Partiation.REsturant, Restaurant.Partiation.Candy, Restaurant.Partiation.Candy, Restaurant.Partiation.Caffe, Restaurant.Partiation.Caffe, Restaurant.Partiation.Others});
 
 
     static Bag currerntBAg;
@@ -62,6 +62,12 @@ public class StaticDataGenerator {
     static List<Food> foods3 = new ArrayList<>();
     static List<Food> foods4 = new ArrayList<>();
     static List<Food> foods5 = new ArrayList<>();
+
+
+    public static  boolean isFirst=true;
+    public static String customerAddress="نامشخش";
+
+
     private StaticDataGenerator(Context context) {
 
         this.mContext = context;
@@ -103,6 +109,7 @@ public class StaticDataGenerator {
             resList.add(i, restaurant);
 
         }
+        mAllRestList=resList;
         return resList;
     }
 
@@ -164,22 +171,22 @@ public class StaticDataGenerator {
         mRestaurantCategoreis.add(3, (List<Category>) tempCategories8);
         Log.e("wtf", "     " + mRestaurantCategoreis.size());
 
-        Food food1 = new Food(1, "قیمه بادمجون", 17000, 0.0, 2, "خانگی", "pizzahot", category1.getmCategoryName(),   R.drawable.f1);
-        Food food2 = new Food(2, "پیتز پپرونی", 250000, 0.0, 3, "تند", "pizzahot", category1.getmCategoryName(),   R.drawable.f2);
+        Food food1 = new Food(1, "قیمه بادمجون", 17000, 30.0, 2, "خانگی", "pizzahot", category1.getmCategoryName(), R.drawable.f1);
+        Food food2 = new Food(2, "پیتز پپرونی", 250000, 20.0, 3, "تند", "pizzahot", category1.getmCategoryName(), R.drawable.f2);
 
-        Food food3 = new Food(3, "زرشک پلو با مرغ", 18000, 0.0, 1, "ران مرغ", "pizzahot", category2.getmCategoryName(),   R.drawable.f3);
-        Food food4 = new Food(4, "نگینی", 27000, 0.0, 3, "همراه با برنج", "pizzahot", category2.getmCategoryName(),   R.drawable.f4);
+        Food food3 = new Food(3, "زرشک پلو با مرغ", 18000, 15.0, 1, "ران مرغ", "pizzahot", category2.getmCategoryName(), R.drawable.f3);
+        Food food4 = new Food(4, "نگینی", 27000, 0.0, 3, "همراه با برنج", "pizzahot", category2.getmCategoryName(), R.drawable.f4);
 
 
-        Food food5 = new Food(5, "ساندویچ", 18000, 0.0, 4, "هات داگ", "kababi", category3.getmCategoryName(),   R.drawable.f5);
-        Food food6 = new Food(6, "کیک", 38000, 0.0, 3, "شکلاتی", "kababi", category3.getmCategoryName(),   R.drawable.f6);
+        Food food5 = new Food(5, "ساندویچ", 18000, 40.0, 4, "هات داگ", "kababi", category3.getmCategoryName(), R.drawable.f5);
+        Food food6 = new Food(6, "کیک", 38000, 30.0, 3, "شکلاتی", "kababi", category3.getmCategoryName(), R.drawable.f6);
 
-        Food food7 = new Food(7, "نان سیر", 12000, 0.0, 5, "پیش غذا", "kababi", category4.getmCategoryName(),   R.drawable.f7);
-        Food food8 = new Food(8, "سالاد", 8000, 0.0, 1, "سالاد فصل", "kababi", category4.getmCategoryName(),   R.drawable.f8);
+        Food food7 = new Food(7, "نان سیر", 12000, 0.0, 5, "پیش غذا", "kababi", category4.getmCategoryName(), R.drawable.f7);
+        Food food8 = new Food(8, "سالاد", 8000, 20.0, 1, "سالاد فصل", "kababi", category4.getmCategoryName(), R.drawable.f8);
 
         ///
-        Food food9 = new Food(9, "کوبیده", 25000, 0.0, 1, "دو یسخ", "kababi", category4.getmCategoryName(),   R.drawable.f9);
-        Food food10 = new Food(10, "نیمرو", 12000, 0.0, 5, "نیمرو با نان", "kababi", category4.getmCategoryName(),   R.drawable.f10);
+        Food food9 = new Food(9, "کوبیده", 25000, 0.0, 1, "دو یسخ", "kababi", category4.getmCategoryName(), R.drawable.f9);
+        Food food10 = new Food(10, "نیمرو", 12000, 10.0, 5, "نیمرو با نان", "kababi", category4.getmCategoryName(), R.drawable.f10);
 
         foods1.add(0, food1);
         foods1.add(1, food2);
@@ -248,8 +255,8 @@ public class StaticDataGenerator {
                 }
             }
         }
-          Collections.reverse(basicList);
-       return basicList;
+        Collections.reverse(basicList);
+        return basicList;
     }
 
     public static Restaurant serarchRestById(int id) {
@@ -275,5 +282,14 @@ public class StaticDataGenerator {
         return null;
     }
 
+    public String getRestNameBydId(int restId) {
+        for (int i = 0; i < mAllRestList.size(); i++) {
+            if (mAllRestList.get(i).getmRestaurantId() == restId)
+                return mAllRestList.get(i).getmRestaurantName();
+        }
 
+        return "no";
+    }
 }
+
+

@@ -15,6 +15,8 @@ public class Bag {
     private static List<Food> mfoodsInBag = new ArrayList<>();
     private static List<Food> mFoodsInBagUnic = new ArrayList<>();
     private static List<Integer> mFoodCount = new ArrayList<>();
+    private int allFodCount = 0;
+
 
     Context mContext;
 
@@ -31,7 +33,11 @@ public class Bag {
     }
 
     public static void emptizeTheBag(Context context) {
-        instance = new Bag(context);
+        // instance = new Bag(context);
+        for (int i = 0; i < mfoodsInBag.size(); i++) {
+            mfoodsInBag.get(i).setmFoodInBagCount(0);
+        }
+        mfoodsInBag = new ArrayList<>();
     }
 
     public void setEmpty(boolean empty) {
@@ -76,18 +82,43 @@ public class Bag {
     }
 
     public static void addToBag(Food food) {
-        //   if (otherRestBagCheck())
+        boolean newOrNot = true;
+        for (int i = 0; i < mfoodsInBag.size(); i++) {
+            if (mfoodsInBag.get(i).getMfoodId() == food.getMfoodId()) {
+
+                mfoodsInBag.get(i).setmFoodInBagCount(mfoodsInBag.get(i).getmFoodInBagCount() + 1);
+                return;
+            }
+
+
+            //   if (otherRestBagCheck())
+        }
+        food.setmFoodInBagCount(1);
         mfoodsInBag.add(mfoodsInBag.size(), food);
 
+
+    }
+
+    public static void removeZeroCount() {
+        for (int i = 0; i < mfoodsInBag.size(); i++) {
+            if (mfoodsInBag.get(i).getmFoodInBagCount() == 0) {
+                mfoodsInBag.remove(i);
+
+            }
+        }
     }
 
     public static void removeFromBag(Food food) {
         //   if (otherRestBagCheck())
-        if (mfoodsInBag.size() == 0) return;
+        if (food.getmFoodInBagCount() == 0) {
+            mfoodsInBag.remove(food);
+            return;
+        }
         boolean works = false;
         for (int i = 0; i < mfoodsInBag.size(); i++) {
             if (mfoodsInBag.get(i).getMfoodId() == food.getMfoodId()) {
-                mfoodsInBag.remove(food);
+                //mfoodsInBag.remove(i);
+                mfoodsInBag.get(i).setmFoodInBagCount(mfoodsInBag.get(i).getmFoodInBagCount() - 1);
                 works = true;
             }
         }
@@ -143,5 +174,27 @@ public class Bag {
             }
         }
     }
+
+    public static int totalPriaceCalculater() {
+
+        int temp = 0;
+        for (int i = 0; i < mfoodsInBag.size(); i++) {
+            int offeredPrice = (int) (mfoodsInBag.get(i).getMfoodPrice() - mfoodsInBag.get(i).getMfoodPrice() * mfoodsInBag.get(i).getMfoodOff() / 100);
+            temp += offeredPrice * mfoodsInBag.get(i).getmFoodInBagCount();
+        }
+        return temp;
+    }
+
+    public static int getAllCount() {
+        int temp = 0;
+        for (int i = 0; i < mfoodsInBag.size(); i++) {
+            int count = mfoodsInBag.get(i).getmFoodInBagCount();
+            temp += count;
+
+        }
+        return temp;
+    }
+
+
 }
 

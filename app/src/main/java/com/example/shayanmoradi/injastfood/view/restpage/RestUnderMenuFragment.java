@@ -66,6 +66,19 @@ public class RestUnderMenuFragment extends androidx.fragment.app.Fragment {
         categoryFoods = currentCategory.getmFoodsInCAtegory();
         currentBag = Bag.getInstance(getActivity());
 
+
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        updateUI();
+        visInvisTheBtn();
+    }
+
+    @Override
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
     }
 
     @Override
@@ -101,16 +114,19 @@ public class RestUnderMenuFragment extends androidx.fragment.app.Fragment {
     }
 
     private void visInvisTheBtn() {
-        List<Food> foodList = Bag.getInstance(getContext()).getMfoodsInBag();
-        if (!(foodList.size() > 0)) {
+        if (Bag.getInstance(getContext()).getAllCount() < 1)
+//        List<Food> foodList = Bag.getInstance(getContext()).getMfoodsInBag();
+//        if ((foodList.size() <= 0))
+        {
             goToShoppingBagBtn.setVisibility(View.GONE);
 
-        }else {
+        } else {
             goToShoppingBagBtn.setVisibility(View.VISIBLE);
         }
     }
 
     public void updateUI() {
+        visInvisTheBtn();
         TaskAdapter tasksAdapter = new TaskAdapter(categoryFoods);
 
         if (tasksAdapter == null) {
@@ -149,7 +165,7 @@ public class RestUnderMenuFragment extends androidx.fragment.app.Fragment {
             addToBagBtn = itemView.findViewById(R.id.add_to_bag_btn);
             removeFromBagBtn = itemView.findViewById(R.id.delete_from_bag_btn);
             bagCount = itemView.findViewById(R.id.bag_count);
-            foodImgIv=itemView.findViewById(R.id.item_food_image);
+            foodImgIv = itemView.findViewById(R.id.item_food_image);
             addToBagBtn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -200,9 +216,11 @@ public class RestUnderMenuFragment extends androidx.fragment.app.Fragment {
 
             foodNameTv.setText(food.getMfoodName());
             foodDesTv.setText(food.getMfoodDes());
-            foodBasicPriceTv.setText(food.getMfoodPrice() + "");
-            foodFinalPriceTv.setText(food.getMfoodPrice() - food.getMfoodPrice() * food.getMfoodOff() / 100 + "");
-            int foodCount = getFoodCount(food);
+            foodBasicPriceTv.setText(food.getMfoodPrice() + "تومان");
+            int finalPrice= (int) (food.getMfoodPrice() - food.getMfoodPrice() * food.getMfoodOff() / 100);
+            foodFinalPriceTv.setText(finalPrice+ "تومان");
+            //  int foodCount = getFoodCount(food);
+            int foodCount = food.getmFoodInBagCount();
 
             bagCount.setText(foodCount + "");
             foodImgIv.setImageResource(food.getMfoodImageAddress());

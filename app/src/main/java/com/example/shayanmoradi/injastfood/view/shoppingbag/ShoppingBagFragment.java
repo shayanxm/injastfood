@@ -34,11 +34,13 @@ public class ShoppingBagFragment extends androidx.fragment.app.Fragment {
     int categoryId;
     Category currentCategory;
     List<Food> ShoppingBagFoods = new ArrayList<>();
-
+    private TextView totalPriceTv;
     Bag currentBag;
     int currentRestId;
     private ConstraintLayout finilizeBagCons;
-Bag bag;
+    private TextView restNameTv;
+    Bag bag;
+
     public static ShoppingBagFragment newInstance() {
 
         Bundle args = new Bundle();
@@ -63,29 +65,47 @@ Bag bag;
         //  ShoppingBagFoods =StaticDataGenerator.getInstance(getContext()).serarchRestById(currentRestId).get;
         ShoppingBagFoods = currentBag.getmFoodsInBagUnic();
         currentBag = Bag.getInstance(getActivity());
+        Bag.getInstance(getContext()).removeZeroCount();
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_shopping_bag, container, false);
-finilizeBagCons=view.findViewById(R.id.finialize_bag_cons);
-finilizeBagCons.setOnClickListener(new View.OnClickListener() {
-    @Override
-    public void onClick(View v) {
-        Toast.makeText(getActivity(), "سفارش با موفقیت ثبت شد.", Toast.LENGTH_LONG).show();
 
-        Bag.emptizeTheBag(getActivity());
-    }
-});
+        View view = inflater.inflate(R.layout.fragment_shopping_bag, container, false);
+        totalPriceTv = view.findViewById(R.id.total_bag_price_tv);
+        restNameTv = view.findViewById(R.id.rest_name_shopping);
+        // restNameTv.setText(StaticDataGenerator.getInstance(getContext()).getRestNameBydId(currentRestId));
+//restNameTv.setText();
+        finilizeBagCons = view.findViewById(R.id.finialize_bag_cons);
+        totalPriceTv.setText(Bag.getInstance(getContext()).totalPriaceCalculater() + "");
+
+        finilizeBagCons.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getActivity(), "سفارش با موفقیت ثبت شد.", Toast.LENGTH_LONG).show();
+
+                Bag.emptizeTheBag(getActivity());
+                getActivity().finish();
+            }
+        });
         restFoodMenuRv = view.findViewById(R.id.shopping_bag_rv);
         restFoodMenuRv.setLayoutManager(new LinearLayoutManager(getActivity()));
         updateUI();
+        ImageView backIv = view.findViewById(R.id.imageView4);
+        backIv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getActivity().finish();
+            }
+        });
         return view;
     }
 
     public void updateUI() {
+
+        totalPriceTv.setText(Bag.getInstance(getContext()).totalPriaceCalculater() + "");
         TaskAdapter tasksAdapter = new TaskAdapter(ShoppingBagFoods);
 
         if (tasksAdapter == null) {
@@ -110,6 +130,7 @@ finilizeBagCons.setOnClickListener(new View.OnClickListener() {
         private Button addToBagBtn;
         private Button removeFromBagBtn;
         private TextView bagCount;
+
         private Food mfood;
         Context context;
 
@@ -123,6 +144,7 @@ finilizeBagCons.setOnClickListener(new View.OnClickListener() {
             foodFinalPriceTv = itemView.findViewById(R.id.item_food_final_price);
             addToBagBtn = itemView.findViewById(R.id.add_to_bag_btn);
             removeFromBagBtn = itemView.findViewById(R.id.delete_from_bag_btn);
+
             bagCount = itemView.findViewById(R.id.bag_count);
             addToBagBtn.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -143,6 +165,12 @@ finilizeBagCons.setOnClickListener(new View.OnClickListener() {
                     Bag.setInstance(currentBag);
                     updateUI();
 
+
+                    //
+                    if (mfood.getmFoodInBagCount() == 0 && currentBag.getMfoodsInBag().size() <= 1) {
+                        Toast.makeText(getActivity(), "سبد خرید خالی شد", Toast.LENGTH_SHORT).show();
+                        getActivity().finish();
+                    }
 
                 }
             });
@@ -172,10 +200,10 @@ finilizeBagCons.setOnClickListener(new View.OnClickListener() {
 
             foodNameTv.setText(food.getMfoodName());
             foodDesTv.setText(food.getMfoodDes());
-            foodBasicPriceTv.setText(food.getMfoodPrice() + "");
-            foodFinalPriceTv.setText(food.getMfoodPrice() - food.getMfoodPrice() * food.getMfoodOff() / 100 + "");
-            int foodCount = getFoodCount(food);
-
+            foodBasicPriceTv.setText(food.getMfoodPrice() + "تومان");
+            foodFinalPriceTv.setText(food.getMfoodPrice() - food.getMfoodPrice() * food.getMfoodOff() / 100 + "تومان");
+//            int foodCount = getFoodCount(food);
+            int foodCount = food.getmFoodInBagCount();
             bagCount.setText(foodCount + "");
         }
 
@@ -213,7 +241,7 @@ finilizeBagCons.setOnClickListener(new View.OnClickListener() {
         @Override
         public TaskHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
             LayoutInflater inflater = LayoutInflater.from(parent.getContext());
-            View view = inflater.inflate(R.layout.items_in_under_menu_rv, parent, false);
+            View view = inflater.inflate(R.layout.items_shopping_bag_rv, parent, false);
             TaskHolder crimeHolder = new TaskHolder(view);
             context = view.getContext();
             return crimeHolder;
