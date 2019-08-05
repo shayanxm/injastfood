@@ -39,6 +39,7 @@ public class ShoppingBagFragment extends androidx.fragment.app.Fragment {
     int currentRestId;
     private ConstraintLayout finilizeBagCons;
     private TextView restNameTv;
+    private ImageView clearBagBtn;
     Bag bag;
 
     public static ShoppingBagFragment newInstance() {
@@ -65,6 +66,7 @@ public class ShoppingBagFragment extends androidx.fragment.app.Fragment {
         //  ShoppingBagFoods =StaticDataGenerator.getInstance(getContext()).serarchRestById(currentRestId).get;
         ShoppingBagFoods = currentBag.getmFoodsInBagUnic();
         currentBag = Bag.getInstance(getActivity());
+
         Bag.getInstance(getContext()).removeZeroCount();
     }
 
@@ -76,11 +78,20 @@ public class ShoppingBagFragment extends androidx.fragment.app.Fragment {
         View view = inflater.inflate(R.layout.fragment_shopping_bag, container, false);
         totalPriceTv = view.findViewById(R.id.total_bag_price_tv);
         restNameTv = view.findViewById(R.id.rest_name_shopping);
+        clearBagBtn=view.findViewById(R.id.clear_bag_iv);
         // restNameTv.setText(StaticDataGenerator.getInstance(getContext()).getRestNameBydId(currentRestId));
 //restNameTv.setText();
         finilizeBagCons = view.findViewById(R.id.finialize_bag_cons);
         totalPriceTv.setText(Bag.getInstance(getContext()).totalPriaceCalculater() + "");
+clearBagBtn.setOnClickListener(new View.OnClickListener() {
+    @Override
+    public void onClick(View v) {
+        Toast.makeText(getActivity(), "سبد خرید خالی شد.", Toast.LENGTH_LONG).show();
 
+        Bag.emptizeTheBag(getActivity());
+        getActivity().finish();
+    }
+});
         finilizeBagCons.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

@@ -87,7 +87,7 @@ public class RestPageFragment extends Fragment {
             }
         });
         restNameTv.setText(currentRest.getmRestaurantName());
-        restDelPrice.setText(currentRest.getmRestaurantDeliveryPrice() + "");
+        restDelPrice.setText((int)currentRest.getmRestaurantDeliveryPrice() + " تومان ");
         restImgIV.setImageResource(currentRest.getmRestaurantSecondImageAddress());
         ImageView backIv = view.findViewById(R.id.imageView4);
         backIv.setOnClickListener(new View.OnClickListener() {

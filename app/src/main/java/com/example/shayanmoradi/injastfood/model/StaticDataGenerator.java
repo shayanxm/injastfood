@@ -18,8 +18,8 @@ public class StaticDataGenerator {
 
     public static List<Restaurant> mAllRestList;
     private static List<Integer> mRestaurantId = Arrays.asList(new Integer[]{12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26});
-    private static List<String> mRestaurantName = Arrays.asList(new String[]{"ایران فود", "نامی نو لند", "سیب ", "ایرانویچ", "هفت جنار", "پیتزا دارت ", "کافه شین", "بامداد", "سعید", "ابمیوه نعمت", "ایرانویچ"});
-    private static List<Integer> mRestaurantRate = Arrays.asList(new Integer[]{1, 2, 3, 41, 2, 3, 4, 5, 5});
+    private static List<String> mRestaurantName = Arrays.asList(new String[]{"ایران فود", "نامی نو لند", "سیب ", "ایرانویچ", "هفت جنار", "کافه شین","پیتزا دارت ", "بامداد", "سعید", "ابمیوه نعمت", "ایرانویچ"});
+    private static List<Integer> mRestaurantRate = Arrays.asList(new Integer[]{1, 2, 3, 3,2,1, 2, 3, 1, 5, 5});
 
     private static List<String> mRestaurantDes = Arrays.asList(new String[]{"ایران فود", "نامی نو لند", "سیب ", "ایرانویچ", "ایران فود", "نامی نو لند", "سیب ", "ایرانویچ", "سنتی ", "کبابی", "فست فود", "ساندویج "});
 
@@ -32,8 +32,8 @@ public class StaticDataGenerator {
             R.drawable.f2,
             R.drawable.f3,
             R.drawable.f4,
-            R.drawable.f5,
             R.drawable.f6,
+            R.drawable.f5,
             R.drawable.f7,
             R.drawable.f8,
             R.drawable.f9,
@@ -44,8 +44,8 @@ public class StaticDataGenerator {
             R.drawable.r2,
             R.drawable.r3,
             R.drawable.r4,
-            R.drawable.r5,
             R.drawable.r6,
+            R.drawable.r5,
             R.drawable.r7,
             R.drawable.r8,
             R.drawable.r9,
@@ -53,7 +53,7 @@ public class StaticDataGenerator {
     });
 
     private static List<String> mRestaurantAddress = Arrays.asList(new String[]{"پونک", "خیابان ازادی", "سعادت اباد", "تهران پارس", "پونک", "خیابان ازادی", "سعادت اباد", "تهران پارس", "پونک", "خیابان ازادی", "سعادت اباد", "تهران پارس"});
-    private static List<Restaurant.Partiation> mRestaurantKind = Arrays.asList(new Restaurant.Partiation[]{Restaurant.Partiation.REsturant, Restaurant.Partiation.REsturant, Restaurant.Partiation.REsturant, Restaurant.Partiation.REsturant, Restaurant.Partiation.Candy, Restaurant.Partiation.Candy, Restaurant.Partiation.Caffe, Restaurant.Partiation.Caffe, Restaurant.Partiation.Others});
+    private static List<Restaurant.Partiation> mRestaurantKind = Arrays.asList(new Restaurant.Partiation[]{Restaurant.Partiation.REsturant, Restaurant.Partiation.REsturant, Restaurant.Partiation.REsturant, Restaurant.Partiation.Candy, Restaurant.Partiation.Candy, Restaurant.Partiation.Caffe, Restaurant.Partiation.Caffe, Restaurant.Partiation.Others,Restaurant.Partiation.Candy});
 
 
     static Bag currerntBAg;
@@ -62,6 +62,8 @@ public class StaticDataGenerator {
     static List<Food> foods3 = new ArrayList<>();
     static List<Food> foods4 = new ArrayList<>();
     static List<Food> foods5 = new ArrayList<>();
+    static List<Food> foods6 = new ArrayList<>();
+    static List<Food> foods7 = new ArrayList<>();
 
 
     public static  boolean isFirst=true;
@@ -118,14 +120,17 @@ public class StaticDataGenerator {
         Category category2 = new Category("ساندویچ", 2, "ساندویچ", 12, foods2);
 
         Category category3 = new Category("کباب", 3, "کباب", 13, foods3);
-        Category category4 = new Category("fast برنجی", 4, "برنجی", 13, foods4);
+        Category category4 = new Category(" برنجی", 4, "برنجی", 13, foods4);
 
 
         Category category5 = new Category("برنجی", 5, "برنجی", 14, foods5);
         Category category6 = new Category("فست فودی", 6, "فست فودی", 14, foods1);
 
         Category category7 = new Category("غیره ", 7, "غیره ", 14, foods2);
-        Category category8 = new Category("شیرینی", 8, "شیرینی", 14, foods3);
+        Category category8 = new Category("پرطرفدار", 8, "شیرینی", 14, foods3);
+
+        Category category9 = new Category("شیرینی ", 9, "غیره ", 14, foods6);
+        Category category10 = new Category("غیره ", 10, "غیره ", 14, foods7);
 
         List<Category> tempCategories = new ArrayList<>();
         List<Category> tempCategories2 = new ArrayList<>();
@@ -135,6 +140,7 @@ public class StaticDataGenerator {
         List<Category> tempCategories6 = new ArrayList<>();
         List<Category> tempCategories7 = new ArrayList<>();
         List<Category> tempCategories8 = new ArrayList<>();
+        List<Category> tempCategories9 = new ArrayList<>();
 
         tempCategories.add(0, category1);
         tempCategories.add(1, category2);
@@ -160,15 +166,18 @@ public class StaticDataGenerator {
         tempCategories8.add(0, category7);
         tempCategories8.add(1, category8);
 
+        tempCategories9.add(0, category9);
+        tempCategories9.add(1, category10);
 
         mRestaurantCategoreis.add(0, (List<Category>) tempCategories);
         mRestaurantCategoreis.add(1, (List<Category>) tempCategories2);
         mRestaurantCategoreis.add(2, (List<Category>) tempCategories3);
         mRestaurantCategoreis.add(3, (List<Category>) tempCategories4);
-        mRestaurantCategoreis.add(0, (List<Category>) tempCategories5);
-        mRestaurantCategoreis.add(1, (List<Category>) tempCategories6);
-        mRestaurantCategoreis.add(2, (List<Category>) tempCategories7);
-        mRestaurantCategoreis.add(3, (List<Category>) tempCategories8);
+        mRestaurantCategoreis.add(4, (List<Category>) tempCategories5);
+        mRestaurantCategoreis.add(5, (List<Category>) tempCategories6);
+        mRestaurantCategoreis.add(6, (List<Category>) tempCategories7);
+        mRestaurantCategoreis.add(7, (List<Category>) tempCategories8);
+        mRestaurantCategoreis.add(8, (List<Category>) tempCategories9);
         Log.e("wtf", "     " + mRestaurantCategoreis.size());
 
         Food food1 = new Food(1, "قیمه بادمجون", 17000, 30.0, 2, "خانگی", "pizzahot", category1.getmCategoryName(), R.drawable.f1);
@@ -188,6 +197,12 @@ public class StaticDataGenerator {
         Food food9 = new Food(9, "کوبیده", 25000, 0.0, 1, "دو یسخ", "kababi", category4.getmCategoryName(), R.drawable.f9);
         Food food10 = new Food(10, "نیمرو", 12000, 10.0, 5, "نیمرو با نان", "kababi", category4.getmCategoryName(), R.drawable.f10);
 
+        Food food11 = new Food(11, "شیرینی زبان", 25000, 0.0, 1, "شیرینی", "kababi", category4.getmCategoryName(), R.drawable.c1);
+        Food food12 = new Food(12, "رولت", 12000, 10.0, 5, "شیرینی", "kababi", category4.getmCategoryName(), R.drawable.c2);
+
+        Food food13 = new Food(13, "نان خامه ایی", 25000, 0.0, 1, "شیرینی", "kababi", category4.getmCategoryName(), R.drawable.c3);
+        Food food14 = new Food(14, "کیک", 12000, 10.0, 5, "شیرینی", "kababi", category4.getmCategoryName(), R.drawable.c4);
+
         foods1.add(0, food1);
         foods1.add(1, food2);
 
@@ -203,6 +218,14 @@ public class StaticDataGenerator {
         foods5.add(0, food9);
         foods5.add(1, food10);
 
+        foods5.add(0, food11);
+        foods5.add(1, food12);
+
+        foods6.add(0, food13);
+        foods6.add(1, food14);
+
+        foods7.add(0, food11);
+        foods7.add(1, food12);
         mRestaurantAllFoods.add(0, foods1);
         mRestaurantAllFoods.add(1, foods2);
         mRestaurantAllFoods.add(2, foods3);
@@ -213,6 +236,8 @@ public class StaticDataGenerator {
         mRestaurantAllFoods.add(7, foods4);
         mRestaurantAllFoods.add(8, foods5);
         mRestaurantAllFoods.add(9, foods5);
+        mRestaurantAllFoods.add(10, foods6);
+        mRestaurantAllFoods.add(11, foods7);
 
 
     }
@@ -242,10 +267,17 @@ public class StaticDataGenerator {
 
     public static List<Restaurant> getSortedRestListAsOffer() {
         List<Restaurant> basicList = restaurantGenarator();
+        for (int i=0;i<basicList.size();i++){
+            if (restaurantGenarator().get(i).getmRestaurantOff()==0.0)
+                basicList.remove(i);
+
+        }
+
         int n = basicList.size();
         Restaurant temp;
         for (int i = 0; i < n; i++) {
             for (int j = 1; j < (n - i); j++) {
+
                 if (basicList.get(j - 1).getmRestaurantOff() > basicList.get(j).getmRestaurantOff()) {
                     //swap elements
                     temp = basicList.get(j - 1);

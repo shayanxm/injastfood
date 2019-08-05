@@ -401,8 +401,8 @@ public class MenuFragment extends Fragment {
 
         @Override
         public int getItemCount() {
-            if (restaurants.size() > 8)
-                return 8;
+            if (restaurants.size() > 7)
+                return 7;
             else
                 return restaurants.size();
         }
@@ -435,6 +435,7 @@ public class MenuFragment extends Fragment {
                 .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int id) {
+                        scrollView.scrollTo(0,0);
                         // removes the AlertDialog in the screen
                     }
                 })
