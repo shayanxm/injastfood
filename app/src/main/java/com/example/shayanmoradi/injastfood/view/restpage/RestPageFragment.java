@@ -40,6 +40,8 @@ public class RestPageFragment extends Fragment {
     private TabLayout tabLayout;
     TextView customerAddTv;
     ViewPager viewPager;
+    ImageView backIv;
+    ImageView mailIv;
     private ViewPagerAdapter viewPagerAdapter;
     int resturauntID;
     Restaurant currentRest;
@@ -72,39 +74,20 @@ public class RestPageFragment extends Fragment {
         // Inflate the layout for this fragment
 
         View view = inflater.inflate(R.layout.fragment_rest_page, container, false);
-        tabLayout = view.findViewById(R.id.tabs);
-        viewPager = view.findViewById(R.id.viewPager);
-        restNameTv = view.findViewById(R.id.rest_name_tv);
-        restDelPrice = view.findViewById(R.id.rest_del_price_tv);
-        restImgIV = view.findViewById(R.id.rest_img_iv);
 
-         customerAddTv  =view.findViewById(R.id.customer_add_tv);
-        customerAddTv.setText(StaticDataGenerator.customerAddress);
-        customerAddTv.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                alertEditTextKeyboardShown();
-            }
-        });
-        restNameTv.setText(currentRest.getmRestaurantName());
-        restDelPrice.setText((int)currentRest.getmRestaurantDeliveryPrice() + " تومان ");
-        restImgIV.setImageResource(currentRest.getmRestaurantSecondImageAddress());
-        ImageView backIv = view.findViewById(R.id.imageView4);
-        backIv.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                getActivity().finish();
-            }
-        });
+        setViewUpWithIds(view);
 
-        ImageView mailIv = view.findViewById(R.id.imageView6);
-        mailIv.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(getActivity(), "در حال حاضر پیامی وجود ندارد", Toast.LENGTH_LONG).show();
-            }
-        });
+        ViewCreater();
 
+        clickListners();
+
+
+        setViewPagerUp();
+
+        return view;
+    }
+
+    private void setViewPagerUp() {
         tabLayout.setupWithViewPager(viewPager);
         viewPagerAdapter = new ViewPagerAdapter(getActivity().getSupportFragmentManager());
         //viewPagerAdapter = new ViewPagerAdapter(this.getChildFragmentManager());
@@ -122,9 +105,47 @@ public class RestPageFragment extends Fragment {
         viewPager.setAdapter(viewPagerAdapter);
 
         viewPager.setCurrentItem(2);
+    }
+
+    private void setViewUpWithIds(View view) {
+        tabLayout = view.findViewById(R.id.tabs);
+        viewPager = view.findViewById(R.id.viewPager);
+        restNameTv = view.findViewById(R.id.rest_name_tv);
+        restDelPrice = view.findViewById(R.id.rest_del_price_tv);
+        restImgIV = view.findViewById(R.id.rest_img_iv);
+        customerAddTv = view.findViewById(R.id.customer_add_tv);
+        backIv = view.findViewById(R.id.imageView4);
+        mailIv = view.findViewById(R.id.imageView6);
+    }
+
+    private void clickListners() {
+        backIv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getActivity().finish();
+            }
+        });
 
 
-        return view;
+        mailIv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getActivity(), "در حال حاضر پیامی وجود ندارد", Toast.LENGTH_LONG).show();
+            }
+        });
+    }
+
+    private void ViewCreater() {
+        customerAddTv.setText(StaticDataGenerator.customerAddress);
+        customerAddTv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                alertEditTextKeyboardShown();
+            }
+        });
+        restNameTv.setText(currentRest.getmRestaurantName());
+        restDelPrice.setText((int) currentRest.getmRestaurantDeliveryPrice() + " تومان ");
+        restImgIV.setImageResource(currentRest.getmRestaurantSecondImageAddress());
     }
 
 
@@ -158,6 +179,7 @@ public class RestPageFragment extends Fragment {
         }
 
     }
+
     public void alertEditTextKeyboardShown() {
 
         // creating the EditText widget programatically
@@ -175,7 +197,7 @@ public class RestPageFragment extends Fragment {
                     @Override
                     public void onClick(DialogInterface dialog, int id) {
 
-                        StaticDataGenerator.customerAddress=editText.getText().toString();
+                        StaticDataGenerator.customerAddress = editText.getText().toString();
                         customerAddTv.setText(StaticDataGenerator.customerAddress);
                     }
                 })

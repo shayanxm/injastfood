@@ -10,7 +10,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
 public class RestPageActivity extends AppCompatActivity {
-    public static final String restID ="com.example.shayanmoradi.injastfood.view.restpage.restID";
+    public static final String restID = "com.example.shayanmoradi.injastfood.view.restpage.restID";
+
     public static Intent newIntent(Context context, int restIntId) {
 
         Intent intent = new Intent(context, RestPageActivity.class);
@@ -28,7 +29,7 @@ public class RestPageActivity extends AppCompatActivity {
 
         int partiation = (Integer) getIntent().getSerializableExtra(restID);
 
-       Fragment fragment = RestPageFragment.newInstance(partiation);
+        Fragment fragment = RestPageFragment.newInstance(partiation);
 
         getSupportFragmentManager()
                 .beginTransaction()

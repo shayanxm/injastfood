@@ -28,13 +28,13 @@ import static com.example.shayanmoradi.injastfood.view.restpage.RestPageActivity
  * A simple {@link Fragment} subclass.
  */
 public class RestMenuFragment extends androidx.fragment.app.Fragment {
-public static final String CategoryId="com.example.shayanmoradi.injastfood.view.restpage.categoryId";
+    public static final String CategoryId = "com.example.shayanmoradi.injastfood.view.restpage.categoryId";
     private TabLayout tabLayout;
     ViewPager viewPager;
     private ViewPagerAdapter viewPagerAdapter;
     int resturauntID;
     Restaurant currentRest;
-    List<Category>thisRestCategories=new ArrayList<>();
+    List<Category> thisRestCategories = new ArrayList<>();
     private ViewPagerAdapter viewPagerAdapter1;
 
     public static RestMenuFragment newInstance(int restIntId) {
@@ -55,25 +55,30 @@ public static final String CategoryId="com.example.shayanmoradi.injastfood.view.
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         resturauntID = (Integer) getArguments().getSerializable(restID);
-        Log.e("test,",resturauntID+"");
+        Log.e("test,", resturauntID + "");
         currentRest = StaticDataGenerator.getInstance(getActivity()).serarchRestById(resturauntID);
-       thisRestCategories= currentRest.getmRestaurantCategoreis();
+        thisRestCategories = currentRest.getmRestaurantCategoreis();
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view= inflater.inflate(R.layout.fragment_rest_menu, container, false);
-        tabLayout = view.findViewById(R.id.tabs);
-        viewPager = view.findViewById(R.id.viewPager);
+        View view = inflater.inflate(R.layout.fragment_rest_menu, container, false);
 
+        setUpViewByIds(view);
 
+        setUpViewPager();
+
+        return view;
+    }
+
+    private void setUpViewPager() {
         tabLayout.setupWithViewPager(viewPager);
-     //  viewPagerAdapter = new ViewPagerAdapter(getActivity().getSupportFragmentManager());
-       viewPagerAdapter = new ViewPagerAdapter(this.getChildFragmentManager());
 
-        for (int i=0;i<thisRestCategories.size();i++){
+        viewPagerAdapter = new ViewPagerAdapter(this.getChildFragmentManager());
+
+        for (int i = 0; i < thisRestCategories.size(); i++) {
             RestUnderMenuFragment tabLayoutFragment = RestUnderMenuFragment.newInstance(thisRestCategories.get(i).getmCategoryId());
             viewPagerAdapter.addFrag(tabLayoutFragment, thisRestCategories.get(i).getmCategoryName());
         }
@@ -81,9 +86,13 @@ public static final String CategoryId="com.example.shayanmoradi.injastfood.view.
         viewPager.setAdapter(viewPagerAdapter);
 
         viewPager.setCurrentItem(1);
-
-  return view;
     }
+
+    private void setUpViewByIds(View view) {
+        tabLayout = view.findViewById(R.id.tabs);
+        viewPager = view.findViewById(R.id.viewPager);
+    }
+
     class ViewPagerAdapter extends FragmentStatePagerAdapter {
         private final List<androidx.fragment.app.Fragment> mFragmentList = new ArrayList<>();
         private final List<String> mFragmentTitleList = new ArrayList<>();

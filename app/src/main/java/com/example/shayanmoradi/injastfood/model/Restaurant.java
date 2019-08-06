@@ -3,18 +3,18 @@ package com.example.shayanmoradi.injastfood.model;
 import java.util.List;
 
 public class Restaurant {
-   public enum Partiation
-    {
-        REsturant,Candy,Caffe,Others
+    public enum Partiation {
+        REsturant, Candy, Caffe, Others
     }
+
     private int mRestaurantId;
     private String mRestaurantName;
     private int mRestaurantRate;
     private double mRestaurantOff;
     private String mRestaurantDes;
     private String mRestaurantAddress;
-    private List<Category>mRestaurantCategoreis;
-    private List<Food>mRestaurantAllFoods;
+    private List<Category> mRestaurantCategoreis;
+    private List<Food> mRestaurantAllFoods;
     private double mRestaurantDeliveryPrice;
     private int mRestaurantImageAddress;
     private int mRestaurantSecondImageAddress;
@@ -47,7 +47,6 @@ public class Restaurant {
     public int getmRestaurantRate() {
         return mRestaurantRate;
     }
-
 
 
     public List<Category> getmRestaurantCategoreis() {

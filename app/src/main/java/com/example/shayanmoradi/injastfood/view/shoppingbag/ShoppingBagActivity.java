@@ -15,7 +15,6 @@ public class ShoppingBagActivity extends AppCompatActivity {
         setContentView(R.layout.activity_shopping_bag);
 
 
-
         Fragment fragment = ShoppingBagFragment.newInstance();
 
         getSupportFragmentManager()

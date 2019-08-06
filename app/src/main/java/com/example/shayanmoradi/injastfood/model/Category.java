@@ -8,7 +8,7 @@ public class Category {
     private String mCategoryRestaurantName;
     private int mCategoryRestaurantId;
 
-    private List<Food>mFoodsInCAtegory;
+    private List<Food> mFoodsInCAtegory;
 
     public Category(String mCategoryName, int mCategoryId, String mCategoryRestaurantName, int mCategoryRestaurantId, List<Food> mFoodsInCAtegory) {
         this.mCategoryName = mCategoryName;

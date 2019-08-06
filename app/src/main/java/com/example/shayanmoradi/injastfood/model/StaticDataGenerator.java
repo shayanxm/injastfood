@@ -18,8 +18,8 @@ public class StaticDataGenerator {
 
     public static List<Restaurant> mAllRestList;
     private static List<Integer> mRestaurantId = Arrays.asList(new Integer[]{12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26});
-    private static List<String> mRestaurantName = Arrays.asList(new String[]{"ایران فود", "نامی نو لند", "سیب ", "ایرانویچ", "هفت جنار", "کافه شین","پیتزا دارت ", "بامداد", "سعید", "ابمیوه نعمت", "ایرانویچ"});
-    private static List<Integer> mRestaurantRate = Arrays.asList(new Integer[]{1, 2, 3, 3,2,1, 2, 3, 1, 5, 5});
+    private static List<String> mRestaurantName = Arrays.asList(new String[]{"ایران فود", "نامی نو لند", "سیب ", "ایرانویچ", "هفت جنار", "کافه شین", "پیتزا دارت ", "بامداد", "سعید", "ابمیوه نعمت", "ایرانویچ"});
+    private static List<Integer> mRestaurantRate = Arrays.asList(new Integer[]{1, 2, 3, 3, 2, 1, 2, 3, 1, 5, 5});
 
     private static List<String> mRestaurantDes = Arrays.asList(new String[]{"ایران فود", "نامی نو لند", "سیب ", "ایرانویچ", "ایران فود", "نامی نو لند", "سیب ", "ایرانویچ", "سنتی ", "کبابی", "فست فود", "ساندویج "});
 
@@ -53,7 +53,7 @@ public class StaticDataGenerator {
     });
 
     private static List<String> mRestaurantAddress = Arrays.asList(new String[]{"پونک", "خیابان ازادی", "سعادت اباد", "تهران پارس", "پونک", "خیابان ازادی", "سعادت اباد", "تهران پارس", "پونک", "خیابان ازادی", "سعادت اباد", "تهران پارس"});
-    private static List<Restaurant.Partiation> mRestaurantKind = Arrays.asList(new Restaurant.Partiation[]{Restaurant.Partiation.REsturant, Restaurant.Partiation.REsturant, Restaurant.Partiation.REsturant, Restaurant.Partiation.Candy, Restaurant.Partiation.Candy, Restaurant.Partiation.Caffe, Restaurant.Partiation.Caffe, Restaurant.Partiation.Others,Restaurant.Partiation.Candy});
+    private static List<Restaurant.Partiation> mRestaurantKind = Arrays.asList(new Restaurant.Partiation[]{Restaurant.Partiation.REsturant, Restaurant.Partiation.REsturant, Restaurant.Partiation.REsturant, Restaurant.Partiation.Candy, Restaurant.Partiation.Candy, Restaurant.Partiation.Caffe, Restaurant.Partiation.Caffe, Restaurant.Partiation.Others, Restaurant.Partiation.Candy});
 
 
     static Bag currerntBAg;
@@ -66,8 +66,8 @@ public class StaticDataGenerator {
     static List<Food> foods7 = new ArrayList<>();
 
 
-    public static  boolean isFirst=true;
-    public static String customerAddress="نامشخش";
+    public static boolean isFirst = true;
+    public static String customerAddress = "نامشخش";
 
 
     private StaticDataGenerator(Context context) {
@@ -111,7 +111,7 @@ public class StaticDataGenerator {
             resList.add(i, restaurant);
 
         }
-        mAllRestList=resList;
+        mAllRestList = resList;
         return resList;
     }
 
@@ -178,7 +178,8 @@ public class StaticDataGenerator {
         mRestaurantCategoreis.add(6, (List<Category>) tempCategories7);
         mRestaurantCategoreis.add(7, (List<Category>) tempCategories8);
         mRestaurantCategoreis.add(8, (List<Category>) tempCategories9);
-        Log.e("wtf", "     " + mRestaurantCategoreis.size());
+
+        Log.e("test", "     " + mRestaurantCategoreis.size());
 
         Food food1 = new Food(1, "قیمه بادمجون", 17000, 30.0, 2, "خانگی", "pizzahot", category1.getmCategoryName(), R.drawable.f1);
         Food food2 = new Food(2, "پیتز پپرونی", 250000, 20.0, 3, "تند", "pizzahot", category1.getmCategoryName(), R.drawable.f2);
@@ -226,6 +227,7 @@ public class StaticDataGenerator {
 
         foods7.add(0, food11);
         foods7.add(1, food12);
+
         mRestaurantAllFoods.add(0, foods1);
         mRestaurantAllFoods.add(1, foods2);
         mRestaurantAllFoods.add(2, foods3);
@@ -255,7 +257,7 @@ public class StaticDataGenerator {
                 if (basicList.get(j - 1).getmRestaurantRate() > basicList.get(j).getmRestaurantRate()) {
                     //swap elements
                     temp = basicList.get(j - 1);
-                    //  arr[j-1] = arr[j];
+
                     basicList.set(j - 1, basicList.get(j));
                     basicList.set(j, temp);
                 }
@@ -267,8 +269,8 @@ public class StaticDataGenerator {
 
     public static List<Restaurant> getSortedRestListAsOffer() {
         List<Restaurant> basicList = restaurantGenarator();
-        for (int i=0;i<basicList.size();i++){
-            if (restaurantGenarator().get(i).getmRestaurantOff()==0.0)
+        for (int i = 0; i < basicList.size(); i++) {
+            if (restaurantGenarator().get(i).getmRestaurantOff() == 0.0)
                 basicList.remove(i);
 
         }
@@ -320,7 +322,7 @@ public class StaticDataGenerator {
                 return mAllRestList.get(i).getmRestaurantName();
         }
 
-        return "no";
+        return "not found";
     }
 }
 

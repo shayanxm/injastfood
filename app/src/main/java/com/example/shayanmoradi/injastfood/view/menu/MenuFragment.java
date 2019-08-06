@@ -52,6 +52,8 @@ public class MenuFragment extends Fragment {
     RecyclerView offerRestRv;
     TextView customerAddTv;
     ScrollView scrollView;
+    ImageView mailIv;
+    ImageView menu;
 
     public static MenuFragment newInstance() {
 
@@ -69,6 +71,8 @@ public class MenuFragment extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        restOrderAsRate = StaticDataGenerator.getInstance(getActivity()).getSortedRestListAsRate();
+        restOrderASOffer = StaticDataGenerator.getInstance(getActivity()).getSortedRestListAsOffer();
 
     }
 
@@ -83,27 +87,34 @@ public class MenuFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_menu, container, false);
-        goToAllBtn = view.findViewById(R.id.go_to_all_rest_btn);
+        syncViewWithIds(view);
+        firstTimeAnalizer();
+        clickLisnters();
+        return view;
 
+    }
+
+    private void syncViewWithIds(View view) {
+        goToAllBtn = view.findViewById(R.id.go_to_all_rest_btn);
         goToREstBtn = view.findViewById(R.id.go_to_rest_cl);
         goToCandyBtn = view.findViewById(R.id.go_to_candy_cl);
         goToCaffeBtn = view.findViewById(R.id.go_to_caffe_cl);
         goTOOthersBtn = view.findViewById(R.id.go_to_others_cl);
         topRestRv = view.findViewById(R.id.top_foods_rv);
         offerRestRv = view.findViewById(R.id.offer_foods_rv);
-        scrollView=view.findViewById(R.id.menu_scroll_view);
-   customerAddTv  =view.findViewById(R.id.customer_add_tv);
-   customerAddTv.setOnClickListener(new View.OnClickListener() {
-       @Override
-       public void onClick(View v) {
-           alertEditTextKeyboardShown();
-       }
-   });
+        scrollView = view.findViewById(R.id.menu_scroll_view);
+        customerAddTv = view.findViewById(R.id.customer_add_tv);
+        mailIv = view.findViewById(R.id.imageView6);
+        menu = view.findViewById(R.id.imageView4);
+    }
 
-        if (StaticDataGenerator.isFirst)
-            alertEditTextKeyboardShown();
-        StaticDataGenerator.isFirst = false;
-        ImageView mailIv = view.findViewById(R.id.imageView6);
+    private void clickLisnters() {
+        customerAddTv.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                alertEditTextKeyboardShown();
+            }
+        });
         mailIv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -111,7 +122,7 @@ public class MenuFragment extends Fragment {
             }
         });
 
-        ImageView menu = view.findViewById(R.id.imageView4);
+
         menu.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -119,26 +130,12 @@ public class MenuFragment extends Fragment {
             }
         });
 
-
-        restOrderAsRate = StaticDataGenerator.getInstance(getActivity()).getSortedRestListAsRate();
-        restOrderASOffer = StaticDataGenerator.getInstance(getActivity()).getSortedRestListAsOffer();
-
-        topRestRv.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayout.HORIZONTAL, false));
-        TaskAdapter tasksAdapter = new TaskAdapter(restOrderAsRate);
-
-        topRestRv.setAdapter(tasksAdapter);
-
-        offerRestRv.setLayoutManager(new GridLayoutManager(getActivity(), 2, GridLayoutManager.HORIZONTAL, false));
-        TaskAdapter2 offersAdapter = new TaskAdapter2(restOrderASOffer);
-        offerRestRv.setAdapter(offersAdapter);
-
+        rvsSetUps();
 
         goToAllBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = ShowListOfRestActivity.newIntent(getActivity());
-
-//      Intent intent= new Intent(getActivity(),RestPageActivity.class);
                 startActivity(intent);
 
             }
@@ -147,7 +144,6 @@ public class MenuFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Intent intent = ShowListOfRestActivity.newIntent(getActivity(), Restaurant.Partiation.REsturant);
-                //   Intent intent= ShowListOfRestActivity.newIntent(getActivity());
                 startActivity(intent);
 
             }
@@ -156,7 +152,7 @@ public class MenuFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Intent intent = ShowListOfRestActivity.newIntent(getActivity(), Restaurant.Partiation.Candy);
-                //   Intent intent= ShowListOfRestActivity.newIntent(getActivity());
+
                 startActivity(intent);
 
             }
@@ -165,7 +161,7 @@ public class MenuFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Intent intent = ShowListOfRestActivity.newIntent(getActivity(), Restaurant.Partiation.Caffe);
-                //   Intent intent= ShowListOfRestActivity.newIntent(getActivity());
+
                 startActivity(intent);
 
             }
@@ -174,15 +170,28 @@ public class MenuFragment extends Fragment {
             @Override
             public void onClick(View v) {
                 Intent intent = ShowListOfRestActivity.newIntent(getActivity(), Restaurant.Partiation.Others);
-                //   Intent intent= ShowListOfRestActivity.newIntent(getActivity());
+
                 startActivity(intent);
 
             }
         });
+    }
 
+    private void rvsSetUps() {
+        topRestRv.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayout.HORIZONTAL, false));
+        TaskAdapter tasksAdapter = new TaskAdapter(restOrderAsRate);
 
-        return view;
+        topRestRv.setAdapter(tasksAdapter);
 
+        offerRestRv.setLayoutManager(new GridLayoutManager(getActivity(), 2, GridLayoutManager.HORIZONTAL, false));
+        TaskAdapter2 offersAdapter = new TaskAdapter2(restOrderASOffer);
+        offerRestRv.setAdapter(offersAdapter);
+    }
+
+    private void firstTimeAnalizer() {
+        if (StaticDataGenerator.isFirst)
+            alertEditTextKeyboardShown();
+        StaticDataGenerator.isFirst = false;
     }
 
     class TaskHolder extends RecyclerView.ViewHolder {
@@ -217,16 +226,13 @@ public class MenuFragment extends Fragment {
                 public void onClick(View v) {
 
 
-                    //    mTask.setYesForEditNoForCreate(false);
+
                     itemView.getContext();
 
                     Intent intent = RestPageActivity.newIntent(getActivity(), mRestaurant.getmRestaurantId());
 
                     startActivity(intent);
 
-//                    FragmentManager fragmentManager = getFragmentManager();
-//                    TaskDetailFragment detailFragment = TaskDetailFragment.newInstance(mTask.getmTaskId());
-//                    detailFragment.show(fragmentManager, "dialog");
 
                 }
             });
@@ -285,16 +291,13 @@ public class MenuFragment extends Fragment {
                 public void onClick(View v) {
 
 
-                    //    mTask.setYesForEditNoForCreate(false);
+
                     itemView.getContext();
 
                     Intent intent = RestPageActivity.newIntent(getActivity(), mRestaurant.getmRestaurantId());
 
                     startActivity(intent);
 
-//                    FragmentManager fragmentManager = getFragmentManager();
-//                    TaskDetailFragment detailFragment = TaskDetailFragment.newInstance(mTask.getmTaskId());
-//                    detailFragment.show(fragmentManager, "dialog");
 
                 }
             });
@@ -330,9 +333,7 @@ public class MenuFragment extends Fragment {
         }
 
 
-        public void setCrimes(List<Restaurant> restaurantList) {
-            restaurants = restaurantList;
-        }
+
 
 
         @NonNull
@@ -340,9 +341,9 @@ public class MenuFragment extends Fragment {
         public TaskHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
             LayoutInflater inflater = LayoutInflater.from(parent.getContext());
             View view = inflater.inflate(R.layout.itemes_in_top_foods_rv, parent, false);
-            TaskHolder crimeHolder = new TaskHolder(view);
+            TaskHolder taskHolder = new TaskHolder(view);
             context = view.getContext();
-            return crimeHolder;
+            return taskHolder;
         }
 
 
@@ -374,9 +375,6 @@ public class MenuFragment extends Fragment {
         }
 
 
-        public void setCrimes(List<Restaurant> restaurantList) {
-            restaurants = restaurantList;
-        }
 
 
         @NonNull
@@ -384,9 +382,9 @@ public class MenuFragment extends Fragment {
         public TaskHolder2 onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
             LayoutInflater inflater = LayoutInflater.from(parent.getContext());
             View view = inflater.inflate(R.layout.items_in_offer_rv, parent, false);
-            TaskHolder2 crimeHolder = new TaskHolder2(view);
+            TaskHolder2 taskHolder2 = new TaskHolder2(view);
             context = view.getContext();
-            return crimeHolder;
+            return taskHolder2;
         }
 
 
@@ -426,16 +424,16 @@ public class MenuFragment extends Fragment {
                     @Override
                     public void onClick(DialogInterface dialog, int id) {
 
-                        StaticDataGenerator.customerAddress=editText.getText().toString();
+                        StaticDataGenerator.customerAddress = editText.getText().toString();
                         customerAddTv.setText(StaticDataGenerator.customerAddress);
-                        scrollView.scrollTo(0,0);
+                        scrollView.scrollTo(0, 0);
                     }
                 })
 
                 .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int id) {
-                        scrollView.scrollTo(0,0);
+                        scrollView.scrollTo(0, 0);
                         // removes the AlertDialog in the screen
                     }
                 })

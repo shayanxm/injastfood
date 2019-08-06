@@ -40,6 +40,7 @@ public class ShoppingBagFragment extends androidx.fragment.app.Fragment {
     private ConstraintLayout finilizeBagCons;
     private TextView restNameTv;
     private ImageView clearBagBtn;
+    ImageView backIv;
     Bag bag;
 
     public static ShoppingBagFragment newInstance() {
@@ -58,15 +59,11 @@ public class ShoppingBagFragment extends androidx.fragment.app.Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //   categoryId = (Integer) getArguments().getSerializable(CategoryId);
-        // currentCategory = StaticDataGenerator.getInstance(getContext()).searchCategoryById(categoryId);
+
         currentBag = Bag.getInstance(getContext());
         currentRestId = Bag.getInstance(getContext()).getMbagRestaurantId();
-
-        //  ShoppingBagFoods =StaticDataGenerator.getInstance(getContext()).serarchRestById(currentRestId).get;
         ShoppingBagFoods = currentBag.getmFoodsInBagUnic();
         currentBag = Bag.getInstance(getActivity());
-
         Bag.getInstance(getContext()).removeZeroCount();
     }
 
@@ -76,22 +73,26 @@ public class ShoppingBagFragment extends androidx.fragment.app.Fragment {
         // Inflate the layout for this fragment
 
         View view = inflater.inflate(R.layout.fragment_shopping_bag, container, false);
-        totalPriceTv = view.findViewById(R.id.total_bag_price_tv);
-        restNameTv = view.findViewById(R.id.rest_name_shopping);
-        clearBagBtn=view.findViewById(R.id.clear_bag_iv);
-        // restNameTv.setText(StaticDataGenerator.getInstance(getContext()).getRestNameBydId(currentRestId));
-//restNameTv.setText();
-        finilizeBagCons = view.findViewById(R.id.finialize_bag_cons);
+        setUpViewWithIds(view);
         totalPriceTv.setText(Bag.getInstance(getContext()).totalPriaceCalculater() + "");
-clearBagBtn.setOnClickListener(new View.OnClickListener() {
-    @Override
-    public void onClick(View v) {
-        Toast.makeText(getActivity(), "سبد خرید خالی شد.", Toast.LENGTH_LONG).show();
+        clickListners();
 
-        Bag.emptizeTheBag(getActivity());
-        getActivity().finish();
+        restFoodMenuRv.setLayoutManager(new LinearLayoutManager(getActivity()));
+        updateUI();
+
+        return view;
     }
-});
+
+    private void clickListners() {
+        clearBagBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getActivity(), "سبد خرید خالی شد.", Toast.LENGTH_LONG).show();
+
+                Bag.emptizeTheBag(getActivity());
+                getActivity().finish();
+            }
+        });
         finilizeBagCons.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -101,17 +102,21 @@ clearBagBtn.setOnClickListener(new View.OnClickListener() {
                 getActivity().finish();
             }
         });
-        restFoodMenuRv = view.findViewById(R.id.shopping_bag_rv);
-        restFoodMenuRv.setLayoutManager(new LinearLayoutManager(getActivity()));
-        updateUI();
-        ImageView backIv = view.findViewById(R.id.imageView4);
         backIv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 getActivity().finish();
             }
         });
-        return view;
+    }
+
+    private void setUpViewWithIds(View view) {
+        totalPriceTv = view.findViewById(R.id.total_bag_price_tv);
+        restNameTv = view.findViewById(R.id.rest_name_shopping);
+        clearBagBtn = view.findViewById(R.id.clear_bag_iv);
+        finilizeBagCons = view.findViewById(R.id.finialize_bag_cons);
+        restFoodMenuRv = view.findViewById(R.id.shopping_bag_rv);
+        backIv = view.findViewById(R.id.imageView4);
     }
 
     public void updateUI() {
@@ -189,14 +194,8 @@ clearBagBtn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
 
-
-                    //    mTask.setYesForEditNoForCreate(false);
                     itemView.getContext();
 
-
-//                    FragmentManager fragmentManager = getFragmentManager();
-//                    TaskDetailFragment detailFragment = TaskDetailFragment.newInstance(mTask.getmTaskId());
-//                    detailFragment.show(fragmentManager, "dialog");
 
                 }
             });
@@ -243,9 +242,7 @@ clearBagBtn.setOnClickListener(new View.OnClickListener() {
         }
 
 
-        public void setCrimes(List<Food> foodList) {
-            foods = foodList;
-        }
+
 
 
         @NonNull
@@ -253,9 +250,9 @@ clearBagBtn.setOnClickListener(new View.OnClickListener() {
         public TaskHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
             LayoutInflater inflater = LayoutInflater.from(parent.getContext());
             View view = inflater.inflate(R.layout.items_shopping_bag_rv, parent, false);
-            TaskHolder crimeHolder = new TaskHolder(view);
+            TaskHolder taskHolder = new TaskHolder(view);
             context = view.getContext();
-            return crimeHolder;
+            return taskHolder;
         }
 
 

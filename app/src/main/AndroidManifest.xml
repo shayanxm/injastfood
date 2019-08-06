@@ -16,7 +16,7 @@
         <activity android:name=".view.restpage.RestPageActivity" />
         <activity android:name=".view.shoppingbag.ShoppingBagActivity" />
         <activity
-            android:name=".SplashActivity"
+            android:name=".view.SplashActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/title_activity_splash"
             android:theme="@style/FullscreenTheme">

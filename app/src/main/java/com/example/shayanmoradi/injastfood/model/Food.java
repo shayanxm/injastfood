@@ -10,7 +10,7 @@ public class Food {
     private String mfoodRestaurantName;
     private String mfoodCategoryName;
     private int mfoodImageAddress;
-    private int mFoodInBagCount=0;
+    private int mFoodInBagCount ;
 
     public Food(int mfoodId, String mfoodName, int mfoodPrice, double mfoodOff, int mfoodRate, String mfoodDes, String mfoodRestaurantName, String mfoodCategoryName, int mfoodImageAddress, int mFoodInBagCount) {
         this.mfoodId = mfoodId;

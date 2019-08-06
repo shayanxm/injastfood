@@ -68,11 +68,6 @@ public class ShowListOfRestActivity extends AppCompatActivity {
         setContentView(R.layout.activity_show_list_of_rest);
 
 
-        //   Fragment fragment = ShowListOfRestFragment.newInstance();
-
-
-//        ShowListOfRestFragment.newInstance();
-//        ShowListOfRestFragment.newInstance("test");
 
         Fragment fragment;
         switch (whatInfoInt) {
@@ -80,7 +75,7 @@ public class ShowListOfRestActivity extends AppCompatActivity {
                 fragment = ShowListOfRestFragment.newInstance();
                 break;
             case 1:
-             int partiation = (Integer) getIntent().getSerializableExtra(kindCode);
+                int partiation = (Integer) getIntent().getSerializableExtra(kindCode);
                 fragment = ShowListOfRestFragment.newInstance(partiation);
                 break;
             case 2:
@@ -88,7 +83,7 @@ public class ShowListOfRestActivity extends AppCompatActivity {
                 break;
             default:
                 fragment = ShowListOfRestFragment.newInstance();
-                Log.e("list","unvalid page to go");
+                Log.e("list", "unvalid page to go");
         }
 
         getSupportFragmentManager()

@@ -5,7 +5,6 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -36,13 +35,15 @@ import static com.example.shayanmoradi.injastfood.view.list.ShowListOfRestActivi
  * A simple {@link Fragment} subclass.
  */
 public class ShowListOfRestFragment extends Fragment {
-    Restaurant testRest;
+
     RecyclerView restKindsRv;
     private static int incomingPageInt = -1;
     String searchS;
     int partiationINt;
     TextView customerAddTv;
     Restaurant.Partiation partiationionzed;
+    ImageView backIv;
+    ImageView mailIv;
     List<Restaurant> showRestList = new ArrayList<>();
 
     public static ShowListOfRestFragment newInstance() {
@@ -59,32 +60,7 @@ public class ShowListOfRestFragment extends Fragment {
         incomingPageInt = 1;
         int kindInInt = -1;
         Bundle args = new Bundle();
-//        switch (partiation) {
-//            case REsturant:
-//                kindInInt = 0;
-//
-//                args.putSerializable(kindCode, kindInInt);
-//                break;
-//            case Candy:
-//                kindInInt = 1;
-//                args.putSerializable(kindCode, kindInInt);
-//                break;
-//            case Caffe:
-//                kindInInt = 2;
-//                args.putSerializable(kindCode, kindInInt);
-//
-//                break;
-//            case Others:
-//                kindInInt = 3;
-//                args.putSerializable(kindCode, kindInInt);
-//
-//                break;
-//
-//
-//        }
-
         args.putSerializable(kindCode, partiationINt);
-
         ShowListOfRestFragment fragment = new ShowListOfRestFragment();
         fragment.setArguments(args);
         return fragment;
@@ -110,11 +86,34 @@ public class ShowListOfRestFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_show_list_of_rest, container, false);
-        Log.v("test", (Integer) getArguments().getSerializable(kindCode) + "");
+
+        setUpViewByIds(view);
+
+        customerAddTv.setText(StaticDataGenerator.customerAddress);
+
+        clickListners();
+
+        incomingIntProcess();
+
+        setUpRv();
+
+        return view;
+    }
+
+    private void setUpRv() {
+        restKindsRv.setLayoutManager(new LinearLayoutManager(getActivity()));
+        TaskAdapter tasksAdapter = new TaskAdapter(showRestList);
+        restKindsRv.setAdapter(tasksAdapter);
+    }
+
+    private void setUpViewByIds(View view) {
         restKindsRv = view.findViewById(R.id.show_list_rv);
-        ImageView backIv = view.findViewById(R.id.imageView4);
-        customerAddTv  =view.findViewById(R.id.customer_add_tv);
-       customerAddTv.setText(StaticDataGenerator.customerAddress);
+        backIv = view.findViewById(R.id.imageView4);
+        customerAddTv = view.findViewById(R.id.customer_add_tv);
+        mailIv = view.findViewById(R.id.imageView6);
+    }
+
+    private void clickListners() {
         customerAddTv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -129,18 +128,17 @@ public class ShowListOfRestFragment extends Fragment {
                 getActivity().finish();
             }
         });
-        ImageView mailIv = view.findViewById(R.id.imageView6);
+
         mailIv.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Toast.makeText(getActivity(), "در حال حاضر پیامی وجود ندارد", Toast.LENGTH_LONG).show();
             }
         });
+    }
 
 
-        restKindsRv.setLayoutManager(new LinearLayoutManager(getActivity()));
-
-
+    private void incomingIntProcess() {
         switch (incomingPageInt) {
             case 0:
                 showRestList = StaticDataGenerator.getInstance(getActivity()).getmAllRestList();
@@ -167,11 +165,6 @@ public class ShowListOfRestFragment extends Fragment {
                 break;
 
         }
-
-
-        TaskAdapter tasksAdapter = new TaskAdapter(showRestList);
-        restKindsRv.setAdapter(tasksAdapter);
-        return view;
 
     }
 
@@ -222,15 +215,11 @@ public class ShowListOfRestFragment extends Fragment {
                 public void onClick(View v) {
 
 
-                    //    mTask.setYesForEditNoForCreate(false);
                     itemView.getContext();
 
                     Intent intent = RestPageActivity.newIntent(getActivity(), mRestaurant.getmRestaurantId());
-
                     startActivity(intent);
-//                    FragmentManager fragmentManager = getFragmentManager();
-//                    TaskDetailFragment detailFragment = TaskDetailFragment.newInstance(mTask.getmTaskId());
-//                    detailFragment.show(fragmentManager, "dialog");
+
 
                 }
             });
@@ -262,19 +251,14 @@ public class ShowListOfRestFragment extends Fragment {
         }
 
 
-        public void setCrimes(List<Restaurant> restaurantList) {
-            restaurants = restaurantList;
-        }
-
-
         @NonNull
         @Override
         public TaskHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
             LayoutInflater inflater = LayoutInflater.from(parent.getContext());
             View view = inflater.inflate(R.layout.items_rest_sort_rv, parent, false);
-            TaskHolder crimeHolder = new TaskHolder(view);
+            TaskHolder taskHolder = new TaskHolder(view);
             context = view.getContext();
-            return crimeHolder;
+            return taskHolder;
         }
 
 
@@ -292,7 +276,9 @@ public class ShowListOfRestFragment extends Fragment {
             return restaurants.size();
         }
 
-    }    public void alertEditTextKeyboardShown() {
+    }
+
+    public void alertEditTextKeyboardShown() {
 
         // creating the EditText widget programatically
         final EditText editText = new EditText(getActivity());
@@ -309,7 +295,7 @@ public class ShowListOfRestFragment extends Fragment {
                     @Override
                     public void onClick(DialogInterface dialog, int id) {
 
-                        StaticDataGenerator.customerAddress=editText.getText().toString();
+                        StaticDataGenerator.customerAddress = editText.getText().toString();
                         customerAddTv.setText(StaticDataGenerator.customerAddress);
                     }
                 })

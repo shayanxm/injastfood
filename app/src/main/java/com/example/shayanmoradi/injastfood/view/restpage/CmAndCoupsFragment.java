@@ -49,7 +49,7 @@ public class CmAndCoupsFragment extends androidx.fragment.app.Fragment {
         if (pageCode == 0) {
             txtToShowTv.setText(" کوپنی برای" +
                     " این رسوران فعال نیست");
-        }else
+        } else
             txtToShowTv.setText(" نظری برای این رستوران ثبت نشده");
         return view;
     }

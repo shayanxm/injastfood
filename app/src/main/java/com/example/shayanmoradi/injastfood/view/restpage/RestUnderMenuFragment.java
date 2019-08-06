@@ -87,19 +87,20 @@ public class RestUnderMenuFragment extends androidx.fragment.app.Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_rest_under_menu, container, false);
 
-        restFoodMenuRv = view.findViewById(R.id.rest_under_menu_cv);
-        goToShoppingBagBtn = view.findViewById(R.id.go_to_shopping_bag_cons);
+        setViewUpWithIds(view);
 
         restFoodMenuRv.setLayoutManager(new LinearLayoutManager(getActivity()));
 
-
-//        TaskAdapter tasksAdapter = new TaskAdapter(categoryFoods);
-//        restFoodMenuRv.setAdapter(tasksAdapter);
         updateUI();
 
         visInvisTheBtn();
 
+        clickListners();
 
+        return view;
+    }
+
+    private void clickListners() {
         goToShoppingBagBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -108,9 +109,11 @@ public class RestUnderMenuFragment extends androidx.fragment.app.Fragment {
 
             }
         });
+    }
 
-        return view;
-
+    private void setViewUpWithIds(View view) {
+        restFoodMenuRv = view.findViewById(R.id.rest_under_menu_cv);
+        goToShoppingBagBtn = view.findViewById(R.id.go_to_shopping_bag_cons);
     }
 
     private void visInvisTheBtn() {
@@ -217,8 +220,8 @@ public class RestUnderMenuFragment extends androidx.fragment.app.Fragment {
             foodNameTv.setText(food.getMfoodName());
             foodDesTv.setText(food.getMfoodDes());
             foodBasicPriceTv.setText(food.getMfoodPrice() + "تومان");
-            int finalPrice= (int) (food.getMfoodPrice() - food.getMfoodPrice() * food.getMfoodOff() / 100);
-            foodFinalPriceTv.setText(finalPrice+ "تومان");
+            int finalPrice = (int) (food.getMfoodPrice() - food.getMfoodPrice() * food.getMfoodOff() / 100);
+            foodFinalPriceTv.setText(finalPrice + "تومان");
             //  int foodCount = getFoodCount(food);
             int foodCount = food.getmFoodInBagCount();
 
